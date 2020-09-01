@@ -21,7 +21,7 @@ const SearchField = () => {
           width: "100%",
         }}
       >
-        <i class="fas fa-search" style={{ fontSize: "11px", margin: "3px 3px 3px 20px" }}></i>
+        <i className="fas fa-search" style={{ fontSize: "11px", margin: "3px 3px 3px 20px" }}></i>
         <input
           type="text"
           placeholder="Search for a country"
