@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react"
 import CountryCard from "./CountryCard"
 import { fetchCountries } from "../modules/fetchCountries"
+import { findMatchInBeginning, findMatchElsewhere } from '../helpers/sortResult'
 
 const Countries = ({ filter }) => {
   const [countryList, setCountryList] = useState([])
@@ -20,9 +21,11 @@ const Countries = ({ filter }) => {
   }, [])
 
   useEffect(() => {
-    setFilteredList(
-      countryList.filter((country) => country.name.toLowerCase().includes(filter))
-    )
+    const filteredAndSorted = [
+      ...findMatchInBeginning(countryList, filter),
+      ...findMatchElsewhere(countryList, filter)
+    ]
+    setFilteredList(filteredAndSorted)
   }, [filter, countryList])
 
   return (

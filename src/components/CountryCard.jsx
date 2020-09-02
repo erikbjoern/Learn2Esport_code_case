@@ -4,7 +4,7 @@ const CountryCard = ({ country }) => {
   let languagesArray = []
 
   country &&
-    Object.entries(country?.languages).forEach(([k, v]) => {
+    Object.entries(country.languages).forEach(([k, v]) => {
       languagesArray.push(v.name)
     })
 
