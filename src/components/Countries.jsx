@@ -2,26 +2,31 @@ import React, { useEffect, useState } from "react"
 import CountryCard from "./CountryCard"
 import { fetchCountries } from "../modules/fetchCountries"
 
-const Countries = () => {
+const Countries = ({ filter }) => {
   const [countryList, setCountryList] = useState([])
+  const [filteredList, setFilteredList] = useState([])
 
   const fetch = async () => {
     const response = await fetchCountries()
-    debugger
     setCountryList(response.data.countries)
   }
+  
+  const countryCards = filteredList.map((country) => <CountryCard key={country.name} country={country} />)
 
   useEffect(() => {
     fetch()
   }, [])
 
-  const countryCards = countryList.map((country) => <CountryCard country={country} />)
+  useEffect(() => {
+    setFilteredList(countryList.filter(country => country.name.includes(filter)))
+  }, [filter, countryList])
+
 
   return (
     <div>
       <h2 style={{ color: "white", font: "18px arial semibold, sans-serif", margin: 0 }}>All countries</h2>
       <p style={{ color: "#ccc", font: "9px arial, sans-serif", margin: "0 0 10px 0" }}>
-        {countryList.length} / {countryList.length}
+        {filteredList.length} / {countryList.length}
       </p>
       <div
         style={{

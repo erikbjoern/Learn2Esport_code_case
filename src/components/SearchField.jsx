@@ -1,6 +1,10 @@
 import React from "react"
 
-const SearchField = () => {
+const SearchField = ({ setFilter }) => {
+  const onChangeHandler = (e) => {
+    setFilter(e.target.value)
+  }
+
   return (
     <div
       style={{
@@ -23,6 +27,7 @@ const SearchField = () => {
       >
         <i className="fas fa-search" style={{ fontSize: "11px", margin: "3px 3px 3px 20px" }}></i>
         <input
+          onChange={onChangeHandler}
           type="text"
           placeholder="Search for a country"
           style={{
