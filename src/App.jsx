@@ -1,10 +1,12 @@
-import React from "react"
+import React, { useState } from "react"
 import Header from "./components/Header"
 import Description from "./components/Description"
 import SearchField from "./components/SearchField"
 import Countries from "./components/Countries"
 
 const App = () => {
+  const [filter, setFilter] = useState("")
+
   return (
     <>
       <Header />
@@ -19,8 +21,8 @@ const App = () => {
         }}
       >
         <Description />
-        <SearchField />
-        <Countries />
+        <SearchField setFilter={setFilter} />
+        <Countries filter={filter} />
       </div>
     </>
   )

@@ -18,14 +18,14 @@ const Description = () => {
       <div style={{ marginLeft: "50px" }}>
         <h1
           style={{
-            fontFamily: "arial semibold",
+            fontFamily: "arial semibold, sans-serif",
           }}
         >
           Lorem Ipsum
         </h1>
         <p
           style={{
-            fontFamily: "arial",
+            fontFamily: "arial, sans-serif",
           }}
         >
           Sit dolor
