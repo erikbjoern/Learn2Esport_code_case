@@ -10,21 +10,26 @@ const Countries = ({ filter }) => {
     const response = await fetchCountries()
     setCountryList(response.data.countries)
   }
-  
-  const countryCards = filteredList.map((country) => <CountryCard key={country.name} country={country} />)
+
+  const countryCards = filteredList.map((country) => (
+    <CountryCard key={country.name} country={country} />
+  ))
 
   useEffect(() => {
     fetch()
   }, [])
 
   useEffect(() => {
-    setFilteredList(countryList.filter(country => country.name.includes(filter)))
+    setFilteredList(
+      countryList.filter((country) => country.name.toLowerCase().includes(filter))
+    )
   }, [filter, countryList])
-
 
   return (
     <div>
-      <h2 style={{ color: "white", font: "18px arial semibold, sans-serif", margin: 0 }}>All countries</h2>
+      <h2 style={{ color: "white", font: "18px arial semibold, sans-serif", margin: 0 }}>
+        All countries
+      </h2>
       <p style={{ color: "#ccc", font: "9px arial, sans-serif", margin: "0 0 10px 0" }}>
         {filteredList.length} / {countryList.length}
       </p>

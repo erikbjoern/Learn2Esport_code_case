@@ -1,8 +1,9 @@
 import React from "react"
+import { DebounceInput } from 'react-debounce-input'
 
 const SearchField = ({ setFilter }) => {
   const onChangeHandler = (e) => {
-    setFilter(e.target.value)
+    setFilter(e.target.value.toLowerCase())
   }
 
   return (
@@ -26,7 +27,9 @@ const SearchField = ({ setFilter }) => {
         }}
       >
         <i className="fas fa-search" style={{ fontSize: "11px", margin: "3px 3px 3px 20px" }}></i>
-        <input
+        <DebounceInput
+          minLength={1}
+          debounceTimeout={200}
           onChange={onChangeHandler}
           type="text"
           placeholder="Search for a country"
