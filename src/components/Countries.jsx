@@ -19,8 +19,8 @@ const Countries = () => {
 
   return (
     <div>
-      <h2 style={{ color: "white", font: "18px arial semibold", margin: 0 }}>All countries</h2>
-      <p style={{ color: "#ccc", font: "9px arial", margin: "0 0 10px 0" }}>
+      <h2 style={{ color: "white", font: "18px arial semibold, sans-serif", margin: 0 }}>All countries</h2>
+      <p style={{ color: "#ccc", font: "9px arial, sans-serif", margin: "0 0 10px 0" }}>
         {countryList.length} / {countryList.length}
       </p>
       <div

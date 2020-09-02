@@ -20,7 +20,7 @@ const CountryCard = ({ country }) => {
       }}
     >
       <div style={{ display: "flex", flexDirection: "row" }}>
-        <span>{country?.emoji}</span>
+        <span style={{ fontSize: "50px"}}>{country?.emoji}</span>
         <div
           style={{
             marginLeft: "20px",
@@ -30,10 +30,10 @@ const CountryCard = ({ country }) => {
             padding: "5px",
           }}
         >
-          <h3 style={{ color: "white", font: "18px arial semibold", margin: 0 }}>
+          <h3 style={{ color: "white", font: "18px arial semibold, sans-serif", margin: 0 }}>
             {country?.name}
           </h3>
-          <p style={{ color: "#ccc", font: "11px arial", margin: 0 }}>
+          <p style={{ color: "#ccc", font: "11px arial, sans-serif", margin: 0 }}>
             {country?.capital} ● {country?.continent.code} ● {languagesArray.join(", ")} ●{" "}
             {country?.currency}
           </p>
