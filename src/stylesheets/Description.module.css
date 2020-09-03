@@ -1,0 +1,19 @@
+.container {
+  background-color: #394259;
+  border-radius: 3px;
+  box-shadow: 1px 1px 5px #252522;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  height: 200px;
+  justify-content: center;
+  margin-bottom: 15px;
+}
+
+.heading {
+  font-family: arial semibold, sans-serif;
+}
+
+.body {
+  font-family: arial, sans-serif;
+}

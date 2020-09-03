@@ -1,0 +1,29 @@
+.container {
+  background-color: #394259;
+  border-radius: 3px;
+  display: flex;
+  margin-bottom: 15px;
+  padding: 15px 25px;
+}
+
+.symbolWrapper {
+  font-size: 11px;
+  margin: 3px 3px 3px 20px;
+}
+
+.inputBackground {
+  align-items: center;
+  background-color: #677491;
+  border-radius: 22px;
+  color: #fff;
+  display: flex;
+  width: 100%;
+}
+
+.input {
+  background-color: transparent;
+  border-color: transparent;
+  border: none;
+  padding: 10px;
+  width: 100%;
+}

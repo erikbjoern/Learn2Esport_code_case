@@ -1,5 +1,6 @@
 import React from "react"
-import { DebounceInput } from 'react-debounce-input'
+import { DebounceInput } from "react-debounce-input"
+import styles from "../stylesheets/SearchField.module.css"
 
 const SearchField = ({ setFilter }) => {
   const onChangeHandler = (e) => {
@@ -7,39 +8,18 @@ const SearchField = ({ setFilter }) => {
   }
 
   return (
-    <div
-      style={{
-        backgroundColor: "#394259",
-        borderRadius: "3px",
-        display: "flex",
-        marginBottom: "15px",
-        padding: "15px 25px",
-      }}
-    >
-      <div
-        style={{
-          alignItems: "center",
-          borderRadius: "22px",
-          backgroundColor: "#677491",
-          color: "#fff",
-          display: "flex",
-          width: "100%",
-        }}
-      >
-        <i className="fas fa-search" style={{ fontSize: "11px", margin: "3px 3px 3px 20px" }}></i>
+    <div className={styles.container}>
+      <div className={styles.inputBackground}>
+        <span className={styles.symbolWrapper}>
+          <i className="fas fa-search"></i>
+        </span>
         <DebounceInput
           minLength={1}
           debounceTimeout={200}
           onChange={onChangeHandler}
-          type="text"
+          className={styles.input}
           placeholder="Search for a country"
-          style={{
-            backgroundColor: "transparent",
-            border: "none",
-            borderColor: "transparent",
-            padding: "10px",
-            width: "100%",
-          }}
+          type="text"
         />
       </div>
     </div>

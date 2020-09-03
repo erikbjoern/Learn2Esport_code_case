@@ -1,0 +1,18 @@
+.heading {
+  color: white;
+  font: 18px arial semibold, sans-serif;
+  margin: 0;
+}
+
+.amount {
+  color: #ccc;
+  font: 9px arial, sans-serif;
+  margin: 0 0 10px 0;
+}
+
+.cardContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: -10px;
+}
