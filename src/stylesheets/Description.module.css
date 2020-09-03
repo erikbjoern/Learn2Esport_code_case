@@ -1,3 +1,6 @@
+@value variables: "./variables.css";
+@value vertical-margin from variables;
+
 .container {
   background-color: #394259;
   border-radius: 3px;
@@ -5,9 +8,9 @@
   color: white;
   display: flex;
   flex-direction: column;
-  height: 200px;
+  height: 300px;
   justify-content: center;
-  margin-bottom: 15px;
+  margin-bottom: vertical-margin;
 }
 
 .heading {

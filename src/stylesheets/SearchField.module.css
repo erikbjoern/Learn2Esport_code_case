@@ -1,8 +1,11 @@
+@value variables: "./variables.css";
+@value vertical-margin from variables;
+
 .container {
   background-color: #394259;
   border-radius: 3px;
   display: flex;
-  margin-bottom: 15px;
+  margin-bottom: vertical-margin;
   padding: 15px 25px;
 }
 

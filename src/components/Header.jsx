@@ -9,7 +9,7 @@ const Header = () => {
         src={logo}
         alt="Learn2Esport logo"
         height="30 px"
-        style={{ margin: "15px 0 10px 300px" }}
+        className={styles.logo}
       />
     </div>
   )

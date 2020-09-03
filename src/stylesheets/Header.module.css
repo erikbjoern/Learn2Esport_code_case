@@ -1,8 +1,15 @@
+@value variables: "./variables.css";
+@value header-height from variables;
+
 .header {
+  background-color: #394259;
   box-shadow: 0px 0px 3px #222;
-  height: fit-content;
+  height: header-height;
   position: fixed;
   top: 0;
   width: 100vw;
-  background-color: #394259;
+}
+
+.logo {
+  margin: 15px 0 10px 20vw;
 }

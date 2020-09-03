@@ -1,0 +1,12 @@
+@value variables: "./variables.css";
+@value header-height from variables;
+
+.container {
+  display: flex;
+  flex-direction: column;
+  margin-top: header-height;
+  margin-left: 5vw;
+  padding: 8vh 7vw;
+  width: 76vw;
+  background-color: #293042;
+}
