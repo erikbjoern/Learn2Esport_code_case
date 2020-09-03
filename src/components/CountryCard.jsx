@@ -12,7 +12,7 @@ const CountryCard = ({ country }) => {
   const capital = country?.capital
   const continent = country?.continent.code
   const languages = languagesArray.join(", ")
-  const currency = country?.currency?.replace(",", ", ")
+  const currency = country?.currency?.split(",").join(", ")
 
   const keyWordsArr = [capital, continent, languages, currency]
   const keyWords = keyWordsArr.filter((w) => w != null && w !== "").join(" ● ")

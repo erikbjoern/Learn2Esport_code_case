@@ -8,15 +8,20 @@
   color: white;
   display: flex;
   flex-direction: column;
-  height: 300px;
+  height: 280px;
   justify-content: center;
   margin-bottom: vertical-margin;
 }
 
+.textContainer {
+  margin-left: 70px;
+}
+
 .heading {
-  font-family: arial semibold, sans-serif;
+  font: 42px arial semibold, sans-serif;
+  margin-bottom: 0;
 }
 
 .body {
-  font-family: arial, sans-serif;
+  font: 15px arial, sans-serif;
 }

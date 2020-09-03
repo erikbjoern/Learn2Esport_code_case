@@ -11,7 +11,7 @@
 
 .symbolWrapper {
   font-size: 11px;
-  margin: 3px 3px 3px 20px;
+  margin: 3px -3px 3px 20px;
 }
 
 .inputBackground {
@@ -27,6 +27,17 @@
   background-color: transparent;
   border-color: transparent;
   border: none;
+  color: #ccc;
   padding: 10px;
   width: 100%;
+}
+
+.input:focus {
+  outline: none;
+}
+
+.input::placeholder {
+  color: #bbb;
+  font-size: 10px;
+  font-style: italic;
 }

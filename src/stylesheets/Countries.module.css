@@ -1,3 +1,6 @@
+@value variables: "./variables.css";
+@value card-margin, card-cont-width from variables;
+
 .heading {
   color: white;
   font: 18px arial semibold, sans-serif;
@@ -11,8 +14,13 @@
 }
 
 .cardContainer {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  margin: -10px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 20px;
+}
+
+@media only screen and (max-width: 600px) {
+  .cardContainer {
+    grid-template-columns: minmax(0, 1fr)
+  }
 }
