@@ -12,9 +12,8 @@ body {
 }
 
 .background {
-  background-color: #3b455e;
   background-image: linear-gradient(
-    rgba(36, 43, 61, 0.7), 
+    rgba(36, 43, 61, 0.85), 
   rgba(36, 43, 61, 1) 
   ), url("../images/ashe_background.png");
   background-repeat: no-repeat;

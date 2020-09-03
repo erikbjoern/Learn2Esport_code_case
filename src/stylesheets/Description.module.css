@@ -1,27 +1,72 @@
 @value variables: "./variables.css";
-@value vertical-margin from variables;
+@value vertical-margin, text-color from variables;
 
 .container {
-  background-color: #394259;
+  background-image:  linear-gradient(
+    #343a52c5, 
+  #343a52c5 
+  ), url("../images/anivia_background.png");
+  background-position: 0 -4vw;
+  background-size: 100%;
   border-radius: 3px;
-  box-shadow: 1px 1px 5px #252522;
-  color: white;
+  box-shadow: 1px 1px 8px -1px #1a1d1fc0;
+  color: text-color;
   display: flex;
   flex-direction: column;
-  height: 280px;
+  height: 20vw;
   justify-content: center;
   margin-bottom: vertical-margin;
 }
 
 .textContainer {
-  margin-left: 70px;
+  margin-left: 5vw;
 }
 
 .heading {
-  font: 42px arial semibold, sans-serif;
+  font: 3.5vw arial semibold, sans-serif;
   margin-bottom: 0;
 }
 
 .body {
-  font: 15px arial, sans-serif;
+  font: 1.5vw arial, sans-serif;
+  margin-top: 1.5vw;
+}
+
+@media only screen and (min-width: 1400px) {
+  .container {
+    height: 280px;
+    background-position: 0 -56px;
+  }
+  
+  .textContainer {
+    margin-left: 70px;
+  }
+
+  .heading {
+    font-size: 49px;
+  }
+
+  .body {
+    font-size: 21px;
+    margin-top: 21px;
+  }
+}
+
+@media only screen and (max-width: 700px) {
+  .container {
+    height: 140px;
+  }
+  
+  .textContainer {
+    margin-left: 35px;
+  }
+
+  .heading {
+    font-size: 24px;
+  }
+
+  .body {
+    font-size: 10px;
+    margin-top: 10px;
+  }
 }
