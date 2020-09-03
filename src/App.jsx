@@ -9,14 +9,15 @@ const App = () => {
   const [filter, setFilter] = useState("")
 
   return (
-    <>
+    <div className={styles.mainContainer}>
       <Header />
+      <div className={styles.background} />
       <div className={styles.container}>
         <Description />
         <SearchField setFilter={setFilter} />
         <Countries filter={filter} />
       </div>
-    </>
+    </div>
   )
 }
 
