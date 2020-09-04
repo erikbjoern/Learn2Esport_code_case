@@ -1,7 +1,7 @@
 @value colors: "./variables/colors.css";
 @value measures: "./variables/measures.css";
 @value primary from colors;
-@value header-height from measures;
+@value header-height, static-header-height from measures;
 
 .header {
   align-items: center;
@@ -24,6 +24,10 @@
 }
 
 @media only screen and (min-width: 1400px) {
+  .header {
+    height: static-header-height;
+  }
+
   .logo {
     margin-left: calc(50vw - 420px);
   }

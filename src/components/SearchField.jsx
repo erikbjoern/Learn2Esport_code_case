@@ -7,6 +7,15 @@ const SearchField = ({ setFilter }) => {
     setFilter(e.target.value.toLowerCase())
   }
 
+  const onFocusHandler = (e) => {
+    const elementPosition = e.target.getBoundingClientRect().top;
+    const offset = window.innerWidth * 0.1 + 70
+
+    if (elementPosition > 200) {
+      window.scrollTo({ top: offset, behavior: "smooth" })
+    }
+  }
+
   return (
     <div className={styles.container}>
       <div className={styles.inputBackground}>
@@ -17,6 +26,7 @@ const SearchField = ({ setFilter }) => {
           minLength={1}
           debounceTimeout={200}
           onChange={onChangeHandler}
+          onFocus={onFocusHandler}
           className={styles.input}
           placeholder="Search for a country"
           type="text"
