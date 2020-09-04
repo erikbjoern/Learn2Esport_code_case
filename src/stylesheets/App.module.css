@@ -35,3 +35,13 @@ body {
   position: relative;
   width: 80vw;
 }
+
+@media only screen and (max-width: 900px) {
+  .background {
+    width: calc(70vw + 180px);
+  }
+
+  .container {
+    width: calc(75vw + 45px);
+  }
+}

@@ -8,7 +8,6 @@ const Header = () => {
       <img
         src={logo}
         alt="Learn2Esport logo"
-        height="30 px"
         className={styles.logo}
       />
     </div>
