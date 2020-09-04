@@ -1,6 +1,7 @@
 import React from "react"
 import styles from "../stylesheets/CountryCard.module.css"
 import { continents } from "../modules/continents"
+import FlagIcon from '../modules/flagIcon'
 
 const CountryCard = ({ country }) => {
   if (!country) return
@@ -29,7 +30,9 @@ const CountryCard = ({ country }) => {
 
   return (
     <div className={styles.container}>
-      <span className={styles.flag}>{country.emoji}</span>
+      <div className={styles.flag}>
+        <FlagIcon code={country.code.toLowerCase()} size={"3x"} />
+      </div>
       <div className={styles.textContainer}>
         <h3 className={styles.heading}>{country.name}</h3>
         <p className={styles.keyWords}>{keyWords}</p>

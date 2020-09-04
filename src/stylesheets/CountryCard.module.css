@@ -9,7 +9,7 @@
   box-shadow: shadow;
   display: flex;
   flex-direction: row;
-  padding: 20px;
+  padding: 15px;
   transition: transform .5s, box-shadow .5s;
 }
 
@@ -20,7 +20,8 @@
 }
 
 .flag {
-  font-size: 50px;
+  border-radius: 3px;
+  overflow: hidden;
 }
 
 .textContainer {

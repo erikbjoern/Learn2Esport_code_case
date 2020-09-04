@@ -9,11 +9,11 @@ const COUNTRIES = gql`
   {
     countries {
       capital
+      code
       continent {
         code
       }
       currency
-      emoji
       languages {
         name
       }
