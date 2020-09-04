@@ -1,15 +1,17 @@
 @value variables: "./variables.css";
-@value card-margin, card-cont-width from variables;
+@value card-margin, card-cont-width, main-font, text-primary, text-secondary from variables;
 
 .heading {
-  color: white;
-  font: 18px arial semibold, sans-serif;
+  color: text-primary;
+  font: 16px main-font;
+  font-weight: 500;
   margin: 0;
 }
 
 .amount {
-  color: #ccc;
-  font: 9px arial, sans-serif;
+  color: text-secondary;
+  font: 10px main-font;
+  font-weight: 100;
   margin: 0 0 10px 0;
 }
 
@@ -21,6 +23,6 @@
 
 @media only screen and (max-width: 600px) {
   .cardContainer {
-    grid-template-columns: minmax(0, 1fr)
+    grid-template-columns: minmax(0, 1fr);
   }
 }

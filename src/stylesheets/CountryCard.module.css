@@ -1,5 +1,5 @@
 @value variables: "./variables.css";
-@value card-margin, card-cont-width from variables;
+@value card-margin, card-cont-width, main-font, text-primary, text-secondary from variables;
 
 .container {
   background-color: #394259;
@@ -30,14 +30,16 @@
 }
 
 .heading {
-  color: white;
-  font: 16px arial semibold, sans-serif;
+  color: text-primary;
+  font: 16px main-font;
+  font-weight: 500;
   margin: 0;
 }
 
 .keyWords {
-  color: #ccc;
-  font: 10px arial, sans-serif;
+  color: text-secondary;
+  font: 10px main-font;
+  font-weight: 300;
   margin: 0;
 }
 

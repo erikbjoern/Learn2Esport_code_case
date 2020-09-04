@@ -1,5 +1,12 @@
+@font-face {
+  font-family: "Roboto";
+  src: url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;1,300&display=swap");
+}
+
 @value card-cont-width: 76vw;
 @value card-margin: 10px;
 @value header-height: 60px;
 @value vertical-margin: 24px;
-@value text-color: #EBEEFF;
+@value text-primary: #EBEEFF;
+@value text-secondary: #B2BBD5;
+@value main-font: Roboto, sans-serif;
