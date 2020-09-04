@@ -20,6 +20,8 @@
 }
 
 .flag {
+  min-width: fit-content !important;
+  height: fit-content;
   border-radius: 3px;
   overflow: hidden;
 }
@@ -36,7 +38,7 @@
   color: text-primary;
   font: 14px main-font;
   font-weight: 500;
-  margin: 0;
+  margin: 0 0 10px;
 }
 
 .keyWords {
