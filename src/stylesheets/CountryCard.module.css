@@ -40,3 +40,12 @@
   font: 10px arial, sans-serif;
   margin: 0;
 }
+
+.keyWords span {
+  padding-right: 3px;
+}
+
+.bullet {
+  position: relative;
+  top: -.5px;
+}
