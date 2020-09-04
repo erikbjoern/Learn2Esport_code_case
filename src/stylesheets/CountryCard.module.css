@@ -9,7 +9,7 @@
   box-shadow: shadow;
   display: flex;
   flex-direction: row;
-  padding: 15px;
+  padding: 18px;
   transition: transform .5s, box-shadow .5s;
 }
 
@@ -29,12 +29,12 @@
   flex-direction: column;
   justify-content: space-between;
   margin-left: 20px;
-  padding: 5px;
+  padding: 3px 10px;
 }
 
 .heading {
   color: text-primary;
-  font: 16px main-font;
+  font: 14px main-font;
   font-weight: 500;
   margin: 0;
 }

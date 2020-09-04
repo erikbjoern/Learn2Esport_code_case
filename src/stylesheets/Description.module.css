@@ -5,8 +5,8 @@
 
 .container {
   background-image:  linear-gradient(
-    #343a52c5, 
-  #343a52c5 
+    #383e57ca, 
+  #383e57ca 
   ), url("../images/anivia_background.png");
   background-position: 0 -4vw;
   background-size: 100%;
@@ -25,15 +25,15 @@
 }
 
 .heading {
-  font: 3.5vw main-font;
+  font: 3vw main-font;
   font-weight: 500;
   margin-bottom: 0;
 }
 
 .body {
-  font: 1.2vw main-font;
+  font: 14px main-font;
   font-weight: 100;
-  margin-top: 1.5vw;
+  margin-top: .5vw;
 }
 
 @media only screen and (min-width: 1400px) {
@@ -47,12 +47,11 @@
   }
 
   .heading {
-    font-size: 49px;
+    font-size: 42px;
   }
 
   .body {
-    font-size: 21px;
-    margin-top: 21px;
+    font-size: 1vw;
   }
 }
 
@@ -67,10 +66,5 @@
 
   .heading {
     font-size: 24px;
-  }
-
-  .body {
-    font-size: 10px;
-    margin-top: 10px;
   }
 }
