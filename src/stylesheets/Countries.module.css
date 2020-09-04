@@ -1,5 +1,8 @@
-@value variables: "./variables.css";
-@value card-margin, card-cont-width, main-font, text-primary, text-secondary from variables;
+@value colors: "./variables/colors.css";
+@value fonts: "./variables/fonts.css";
+@value text-primary, text-secondary from colors;
+@value main-font from fonts;
+
 
 .heading {
   color: text-primary;

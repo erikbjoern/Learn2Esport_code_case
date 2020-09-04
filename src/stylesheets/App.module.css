@@ -1,8 +1,10 @@
-@value variables: "./variables.css";
-@value header-height from variables;
+@value measures: "./variables/measures.css";
+@value colors: "./variables/colors.css";
+@value header-height from measures;
+@value primary from colors;
 
 body {
-  background-color: #394259;
+  background-color: primary;
   margin: 0; 
 }
 
@@ -13,7 +15,7 @@ body {
 
 .background {
   background-image: linear-gradient(
-    rgba(36, 43, 61, 0.85), 
+    rgba(36, 43, 61, 0.7), 
   rgba(36, 43, 61, 1) 
   ), url("../images/ashe_background.png");
   background-repeat: no-repeat;

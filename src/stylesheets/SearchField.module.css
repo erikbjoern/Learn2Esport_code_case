@@ -1,11 +1,11 @@
-@value variables: "./variables.css";
-@value vertical-margin, text-primary, text-secondary from variables;
+@value colors: "./variables/colors.css";
+@value primary, text-primary, text-secondary from colors;
 
 .container {
-  background-color: #394259;
+  background-color: primary;
   border-radius: 3px;
   display: flex;
-  margin-bottom: vertical-margin;
+  margin-bottom: 18px;
   padding: 15px 25px;
 }
 
@@ -16,7 +16,7 @@
 
 .inputBackground {
   align-items: center;
-  background-color: #677491;
+  background-color: #5c6989;
   border-radius: 22px;
   color: text-primary;
   display: flex;

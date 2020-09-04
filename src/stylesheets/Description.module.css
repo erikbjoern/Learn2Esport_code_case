@@ -1,5 +1,7 @@
-@value variables: "./variables.css";
-@value vertical-margin, text-primary, main-font from variables;
+@value colors: "./variables/colors.css";
+@value fonts: "./variables/fonts.css";
+@value main-font from fonts;
+@value shadow, text-primary from colors;
 
 .container {
   background-image:  linear-gradient(
@@ -9,13 +11,13 @@
   background-position: 0 -4vw;
   background-size: 100%;
   border-radius: 3px;
-  box-shadow: 1px 1px 8px -1px #1a1d1fc0;
+  box-shadow: shadow;
   color: text-primary;
   display: flex;
   flex-direction: column;
   height: 20vw;
   justify-content: center;
-  margin-bottom: vertical-margin;
+  margin-bottom: 24px;
 }
 
 .textContainer {

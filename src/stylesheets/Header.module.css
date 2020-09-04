@@ -1,9 +1,11 @@
-@value variables: "./variables.css";
-@value header-height from variables;
+@value colors: "./variables/colors.css";
+@value measures: "./variables/measures.css";
+@value primary from colors;
+@value header-height from measures;
 
 .header {
-  background-color: #394259;
-  box-shadow: 0px 0px 3px #222;
+  background-color: primary;
+  box-shadow: 0px 0px 3px #252522;
   height: header-height;
   position: fixed;
   top: 0;
