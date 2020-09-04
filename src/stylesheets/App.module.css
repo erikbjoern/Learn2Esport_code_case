@@ -1,11 +1,12 @@
 @value measures: "./variables/measures.css";
 @value colors: "./variables/colors.css";
 @value header-height from measures;
-@value primary from colors;
+@value secondary, primary from colors;
 
 body {
   background-color: primary;
   margin: 0; 
+  overflow: overlay;
 }
 
 .mainContainer {
@@ -15,19 +16,19 @@ body {
 
 .background {
   background-image: linear-gradient(
-    rgba(36, 43, 61, 0.7), 
-  rgba(36, 43, 61, 1) 
-  ), url("../images/ashe_background.png");
-  background-repeat: no-repeat;
-  background-size: 100%;
-  height: 100vh;
-  max-width: 1140px;
-  position: fixed;
-  top: header-height;
-  width: 90vw;
-}
-
-.container {
+    #242b3db3, 
+    #242b3d 
+    ), url("../images/ashe_background.png");
+    background-repeat: no-repeat;
+    background-size: 100%;
+    height: 100vh;
+    max-width: 1140px;
+    position: fixed;
+    top: header-height;
+    width: 90vw;
+  }
+  
+  .container {
   display: flex;
   flex-direction: column;
   margin-top: calc(header-height + 8vh);
@@ -40,8 +41,27 @@ body {
   .background {
     width: calc(70vw + 180px);
   }
-
+  
   .container {
     width: calc(75vw + 45px);
   }
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  height: 20%;
+  background: #171a1da9;
+  border: 1px solid #ffffff99;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #171a1de6;
 }
