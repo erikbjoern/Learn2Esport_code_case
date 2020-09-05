@@ -1,0 +1,70 @@
+@value colors: "./variables/colors.css";
+@value fonts: "./variables/fonts.css";
+@value main-font from fonts;
+@value shadow, text-primary from colors;
+
+.container {
+  background-image:  linear-gradient(
+    #383e57ca, 
+  #383e57ca 
+  ), url("../images/anivia_background.png");
+  background-position: 0 -4vw;
+  background-size: 100%;
+  border-radius: 3px;
+  box-shadow: shadow;
+  color: text-primary;
+  display: flex;
+  flex-direction: column;
+  height: 18vw;
+  justify-content: center;
+  margin-bottom: 24px;
+}
+
+.textContainer {
+  margin-left: 5vw;
+}
+
+.heading {
+  font: 3vw main-font;
+  font-weight: 500;
+  margin-bottom: 0;
+}
+
+.body {
+  font: 14px main-font;
+  font-weight: 100;
+  margin-top: .5vw;
+}
+
+@media only screen and (min-width: 1400px) {
+  .container {
+    height: 252px;
+    background-position: 0 -56px;
+  }
+  
+  .textContainer {
+    margin-left: 70px;
+  }
+
+  .heading {
+    font-size: 42px;
+  }
+
+  .body {
+    font-size: 1vw;
+  }
+}
+
+@media only screen and (max-width: 700px) {
+  .container {
+    height: 126px;
+  }
+  
+  .textContainer {
+    margin-left: 35px;
+  }
+
+  .heading {
+    font-size: 21px;
+  }
+}

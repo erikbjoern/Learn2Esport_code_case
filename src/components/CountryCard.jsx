@@ -1,43 +1,41 @@
 import React from "react"
+import styles from "../stylesheets/CountryCard.module.css"
+import { continents } from "../modules/continents"
+import FlagIcon from '../modules/flagIcon'
 
 const CountryCard = ({ country }) => {
-  let languagesArray = []
+  if (!country) return
 
-  country &&
-    Object.entries(country.languages).forEach(([k, v]) => {
-      languagesArray.push(v.name)
+  const languagesArr = Object.entries(country.languages).map(([k, v]) => v.name)
+
+  const capital = country.capital
+  const continent = continents[country.continent.code]
+  const languages = languagesArr.join(", ")
+  const currency = country.currency?.split(",").join(", ")
+
+  const keyWordsArr = [capital, continent, languages, currency]
+
+  const keyWords = keyWordsArr
+    .filter((w) => w != null && w !== "")
+    .map((w, i) => {
+      return i === 0 ? (
+        <span>{w}</span>
+      ) : (
+        <>
+          <span className={styles.bullet}> ● </span>
+          <span>{w}</span>
+        </>
+      )
     })
 
   return (
-    <div
-      style={{
-        backgroundColor: "#394259",
-        borderRadius: "3px",
-        boxShadow: "1px 1px 5px #252522",
-        flex: "1 1 40%",
-        padding: "20px",
-        margin: "10px",
-      }}
-    >
-      <div style={{ display: "flex", flexDirection: "row" }}>
-        <span style={{ fontSize: "50px"}}>{country?.emoji}</span>
-        <div
-          style={{
-            marginLeft: "20px",
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "space-between",
-            padding: "5px",
-          }}
-        >
-          <h3 style={{ color: "white", font: "18px arial semibold, sans-serif", margin: 0 }}>
-            {country?.name}
-          </h3>
-          <p style={{ color: "#ccc", font: "11px arial, sans-serif", margin: 0 }}>
-            {country?.capital} ● {country?.continent.code} ● {languagesArray.join(", ")} ●{" "}
-            {country?.currency}
-          </p>
-        </div>
+    <div className={styles.container}>
+      <div className={styles.flag}>
+        <FlagIcon code={country.code.toLowerCase()} size={"3x"} />
+      </div>
+      <div className={styles.textContainer}>
+        <h3 className={styles.heading}>{country.name}</h3>
+        <p className={styles.keyWords}>{keyWords}</p>
       </div>
     </div>
   )

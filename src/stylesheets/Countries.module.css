@@ -1,0 +1,31 @@
+@value colors: "./variables/colors.css";
+@value fonts: "./variables/fonts.css";
+@value text-primary, text-secondary from colors;
+@value main-font from fonts;
+
+
+.heading {
+  color: text-primary;
+  font: 16px main-font;
+  font-weight: 500;
+  margin: 0;
+}
+
+.amount {
+  color: text-secondary;
+  font: 10px main-font;
+  font-weight: 300;
+  margin: 2px 0 15px 0;
+}
+
+.cardContainer {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 20px;
+}
+
+@media only screen and (max-width: 650px) {
+  .cardContainer {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

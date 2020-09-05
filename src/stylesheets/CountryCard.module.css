@@ -1,0 +1,59 @@
+@value colors: "./variables/colors.css";
+@value fonts: "./variables/fonts.css";
+@value primary, shadow, text-primary, text-secondary from colors;
+@value main-font from fonts;
+
+.container {
+  background-color: primary;
+  border-radius: 3px;
+  box-shadow: shadow;
+  display: flex;
+  flex-direction: row;
+  padding: 18px;
+  transition: background-color .3s, box-shadow 1s, transform 1s;
+}
+
+.container:hover {
+  background-color: #383e5780;
+  box-shadow: 1px 5px 6px 2px #25252265;
+  cursor: pointer;
+  transform: translate(2px, -5px);
+}
+
+.flag {
+  min-width: fit-content !important;
+  height: fit-content;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.textContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-left: 20px;
+  padding: 3px 10px;
+}
+
+.heading {
+  color: text-primary;
+  font: 14px main-font;
+  font-weight: 500;
+  margin: 0 0 10px;
+}
+
+.keyWords {
+  color: text-secondary;
+  font: 10px main-font;
+  font-weight: 300;
+  margin: 0;
+}
+
+.keyWords span {
+  padding-right: 3px;
+}
+
+.bullet {
+  position: relative;
+  top: -.5px;
+}
