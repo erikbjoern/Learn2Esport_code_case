@@ -12,11 +12,9 @@ const Modal = ({
   total,
   setActiveCountry,
 }) => {
-
   if (!isOpen) return null
 
   const otherCountries = rndmCountriesInCont
-    .slice(0, 3)
     .map((country) => (
       <CountryCard
         key={country.code}
@@ -44,7 +42,7 @@ const Modal = ({
           Other countries in {continents[country.continent.code]}
         </p>
         <div className={styles.cardContainer}>{otherCountries}</div>
-        <p>+ {total - 3} more</p>
+        <p>{total > 4 && `+ ${total - 4} more`}</p>
       </div>
     </>
   )

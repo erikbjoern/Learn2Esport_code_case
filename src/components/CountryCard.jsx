@@ -18,12 +18,12 @@ const CountryCard = ({ country, setActiveCountry, setModalIsOpen, fromModal }) =
     .filter((w) => w != null && w !== "")
     .map((w, i) => {
       return i === 0 ? (
-        <span>{w}</span>
+        <span key={i}>{w}</span>
       ) : (
-        <>
+        <span key={i}>
           <span className={styles.bullet}> ● </span>
           <span>{w}</span>
-        </>
+        </span>
       )
     })
 

@@ -14,10 +14,12 @@ const Countries = ({ filter }) => {
   const inSameCont = countryList.filter((c) => c.continent.code === activeCountry?.continent?.code)
   const inSameContTotal = inSameCont.length
 
-  for (let i = 0; i < 10; i++) {
+  for (let i = 0; i < 3; i++) {
     const randomCountry = inSameCont[Math.floor(Math.random() * inSameCont.length)]
-    if (!rndmCountriesInCont.find((c) => c === randomCountry)) {
+    if (!rndmCountriesInCont.find((c) => c === randomCountry) && randomCountry !== activeCountry) {
       rndmCountriesInCont.push(randomCountry)
+    } else {
+      i-=1
     }
   }
 
