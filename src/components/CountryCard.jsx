@@ -30,6 +30,10 @@ const CountryCard = ({ country, setActiveCountry, setModalIsOpen, fromModal }) =
   const onClickHandler = () => {
     setModalIsOpen(true)
     setActiveCountry(country)
+
+    if (!fromModal && window.innerHeight < 600) {
+      window.scrollTo({ top: 100, behavior: "smooth" })
+    }
   }
 
   return (
