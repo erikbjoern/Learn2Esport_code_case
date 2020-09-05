@@ -3,7 +3,7 @@ import styles from "../stylesheets/CountryCard.module.css"
 import { continents } from "../modules/continents"
 import FlagIcon from "../modules/flagIcon"
 
-const CountryCard = ({ country, setActiveCountry, modalIsOpen, setModalIsOpen }) => {
+const CountryCard = ({ country, setActiveCountry, setModalIsOpen, fromModal }) => {
   if (!country) return
 
   const languagesArr = Object.entries(country.languages).map(([k, v]) => v.name)
@@ -33,7 +33,7 @@ const CountryCard = ({ country, setActiveCountry, modalIsOpen, setModalIsOpen })
   }
 
   return (
-    <div className={styles.container} onClick={onClickHandler}>
+    <div className={fromModal ? styles.modalContainer : styles.container} onClick={onClickHandler}>
       <div className={styles.flag}>
         <FlagIcon code={country.code.toLowerCase()} size={"3x"} />
       </div>

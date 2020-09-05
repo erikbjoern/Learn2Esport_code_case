@@ -23,6 +23,7 @@ const Modal = ({
         country={country}
         setModalIsOpen={setModalIsOpen}
         setActiveCountry={setActiveCountry}
+        fromModal={true}
       />
     ))
 

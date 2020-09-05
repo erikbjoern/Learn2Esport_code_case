@@ -31,8 +31,8 @@ const Countries = ({ filter }) => {
       key={country.code}
       country={country}
       setActiveCountry={setActiveCountry}
-      modalIsOpen={modalIsOpen}
       setModalIsOpen={setModalIsOpen}
+      fromModal={false}
     />
   ))
 

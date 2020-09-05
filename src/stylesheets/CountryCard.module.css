@@ -3,7 +3,8 @@
 @value primary, shadow, text-primary, text-secondary from colors;
 @value main-font from fonts;
 
-.container {
+.container,
+.modalContainer {
   background-color: primary;
   border-radius: 3px;
   box-shadow: shadow;
@@ -18,6 +19,11 @@
   box-shadow: 1px 5px 6px 2px #25252265;
   cursor: pointer;
   transform: translate(2px, -5px);
+}
+
+.modalContainer:hover {
+  background-color: #383e5760;
+  cursor: pointer;
 }
 
 .flag {
