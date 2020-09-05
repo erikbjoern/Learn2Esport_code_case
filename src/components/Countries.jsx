@@ -28,6 +28,12 @@ const Countries = ({ filter }) => {
     setCountryList(response.data.countries)
   }
 
+  const escape = (e) => {
+    if (e.keyCode === 27) {
+      setModalIsOpen(false)
+    }
+  }
+
   const countryCards = filteredList.map((country) => (
     <CountryCard
       key={country.code}
@@ -40,6 +46,9 @@ const Countries = ({ filter }) => {
 
   useEffect(() => {
     fetch()
+    document.addEventListener("keydown", escape)
+
+    return () => document.removeEventListener("keydown", escape)
   }, [])
 
   useEffect(() => {
