@@ -14,16 +14,15 @@ const Modal = ({
 }) => {
   if (!isOpen) return null
 
-  const otherCountries = rndmCountriesInCont
-    .map((country) => (
-      <CountryCard
-        key={country.code}
-        country={country}
-        setModalIsOpen={setModalIsOpen}
-        setActiveCountry={setActiveCountry}
-        fromModal={true}
-      />
-    ))
+  const otherCountries = rndmCountriesInCont.map((country) => (
+    <CountryCard
+      key={country.code}
+      country={country}
+      setModalIsOpen={setModalIsOpen}
+      setActiveCountry={setActiveCountry}
+      fromModal={true}
+    />
+  ))
 
   return (
     <>
@@ -38,11 +37,13 @@ const Modal = ({
             <p className={styles.continent}>{continents[country.continent.code]}</p>
           </div>
         </div>
-        <p className={styles.otherCountriesText}>
-          Other countries in {continents[country.continent.code]}
-        </p>
-        <div className={styles.cardContainer}>{otherCountries}</div>
-        <p>{total > 4 && `+ ${total - 4} more`}</p>
+        <div className={styles.bottomContainer}>
+          <p className={styles.otherCountriesText}>
+            Other countries in {continents[country.continent.code]}
+          </p>
+          {otherCountries}
+          <p className={styles.count}>{total > 4 && `+ ${total - 4} more`}</p>
+        </div>
       </div>
     </>
   )
