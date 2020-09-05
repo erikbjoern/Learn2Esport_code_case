@@ -1,13 +1,12 @@
 import React from "react"
 import styles from "../stylesheets/CountryCard.module.css"
 import { continents } from "../modules/continents"
-import FlagIcon from '../modules/flagIcon'
+import FlagIcon from "../modules/flagIcon"
 
-const CountryCard = ({ country }) => {
+const CountryCard = ({ country, setActiveCountry, modalIsOpen, setModalIsOpen }) => {
   if (!country) return
 
   const languagesArr = Object.entries(country.languages).map(([k, v]) => v.name)
-
   const capital = country.capital
   const continent = continents[country.continent.code]
   const languages = languagesArr.join(", ")
@@ -28,8 +27,13 @@ const CountryCard = ({ country }) => {
       )
     })
 
+  const onClickHandler = () => {
+    setModalIsOpen(true)
+    setActiveCountry(country)
+  }
+
   return (
-    <div className={styles.container}>
+    <div className={styles.container} onClick={onClickHandler}>
       <div className={styles.flag}>
         <FlagIcon code={country.code.toLowerCase()} size={"3x"} />
       </div>
