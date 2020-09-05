@@ -14,45 +14,45 @@
   top: header-height;
   animation: fade-in .5s;
   width: 100vw;
-  z-index: 1;
-}
-
-.container {
-  display: flex;
-  width: 100%;
-  height: 100vh;
-  justify-content: center;
-  align-items: center;
-  position: absolute;
-  top: header-height;
+  z-index: 2;
 }
 
 .modal {
+  align-items: center;
   background-color: #292d44;
   border-radius: 3px;
   color: text-primary;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  justify-content: flex-end;
   font-family: main-font;
-  padding: 50px 20px 20px;
+  height: fit-content;
+  left: calc(50vw - 220px);
+  margin-top: 30px;
+  padding: 40px 20px 5px;
   position: fixed;
-  top: 15vh;
+  top: calc(14vh - 40px);
   width: 400px;
   z-index: 2;
 }
 
-.cardContainer {
+.topContainer {
+  align-items: center;
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  align-items: stretch;
+  margin-bottom: 15px;
+}
+
+.textContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   width: 100%;
 }
 
 .flag {
   min-width: fit-content !important;
-  height: fit-content;
+  min-height: 80px !important;
   border-radius: 2px;
   overflow: hidden;
 }
@@ -71,6 +71,13 @@
   font-size: 10px;
 }
 
+.cardContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: stretch;
+  width: 100%;
+}
 
 @keyframes fade-in {
   from {
@@ -78,12 +85,38 @@
   } 
 }
 
-@media only screen and (min-width: 1400px) {
-  .overlay {
-    top: static-header-height;
+@media only screen and (max-height: 600px) {
+  .modal {
+    position: absolute;
+    left: calc(38vw - 200px);
+    top: -50px;
+  }
+}
+
+@media only screen and (max-width: 700px) {
+  .topContainer {
+    flex-direction: row;
+    margin-top: -10px;
+    height: 80px;
+    width: 90%;
   }
 
-  .container {
+  .textContainer {
+    height: inherit;
+    justify-content: space-around;
+    margin-left: 30px;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .modal {
+    left: 5vw;
+    width: 80%;
+  }
+}
+
+@media only screen and (min-width: 1400px) {
+  .overlay {
     top: static-header-height;
   }
 }
