@@ -1,5 +1,6 @@
 import React from "react"
 import styles from "../stylesheets/CountryCard.module.css"
+import { scrollIntoView } from "../helpers/scrollIntoView"
 import { continents } from "../modules/continents"
 import FlagIcon from "../modules/flagIcon"
 
@@ -33,8 +34,8 @@ const CountryCard = ({ country, setActiveCountry, modalIsOpen, setModalIsOpen, f
     setModalIsOpen(true)
     setActiveCountry(country)
 
-    if (!fromModal && window.innerHeight < 600) {
-      window.scrollTo({ top: 100, behavior: "smooth" })
+    if (!fromModal) {
+      scrollIntoView()
     }
   }
 

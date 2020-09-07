@@ -1,8 +1,9 @@
-import React from "react"
+import React, { useEffect } from "react"
 import styles from "../stylesheets/Modal.module.css"
 import FlagIcon from "../modules/flagIcon"
 import { continents } from "../modules/continents"
 import CountryCard from "./CountryCard"
+import { scrollIntoView } from "../helpers/scrollIntoView"
 
 const Modal = ({
   country,
@@ -12,6 +13,12 @@ const Modal = ({
   total,
   setActiveCountry,
 }) => {
+  useEffect(() => {
+    window.addEventListener("resize", scrollIntoView)
+
+    return () => window.removeEventListener("resize", scrollIntoView)
+  }, [])
+
   if (!isOpen) return null
 
   const otherCountries = rndmCountriesInCont.map((country) => (
