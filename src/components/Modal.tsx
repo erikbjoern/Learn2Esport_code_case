@@ -5,7 +5,31 @@ import { continents } from "../modules/continents"
 import CountryCard from "./CountryCard"
 import { scrollIntoView } from "../helpers/scrollIntoView"
 
-const Modal = ({
+type Country = {
+  capital: string;
+  code: string;
+  continent: {
+    code: string;
+  };
+  currency: string;
+  languages: {
+    name: {
+      name: string[];
+    };
+  };
+  name: string;
+};
+
+interface Props {
+  country: Country | null;
+  rndmCountriesInCont: Country[];
+  isOpen: boolean;
+  setModalIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  total: number;
+  setActiveCountry: React.Dispatch<React.SetStateAction<Country | null>>;
+}
+
+const Modal: React.FC<Props> = ({
   country,
   rndmCountriesInCont,
   isOpen,
@@ -19,14 +43,15 @@ const Modal = ({
     return () => window.removeEventListener("resize", scrollIntoView)
   }, [])
 
-  if (!isOpen) return null
+  if (!isOpen || !country) return null
 
-  const otherCountries = rndmCountriesInCont.map((country) => (
+  const otherCountries = rndmCountriesInCont.map((country: Country) => (
     <CountryCard
       key={country.code}
       country={country}
       setModalIsOpen={setModalIsOpen}
       setActiveCountry={setActiveCountry}
+      modalIsOpen={true}
       fromModal={true}
     />
   ))

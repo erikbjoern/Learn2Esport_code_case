@@ -5,14 +5,33 @@ import { fetchCountries } from "../modules/fetchCountries"
 import { findMatchInBeginning, findMatchElsewhere } from "../helpers/sortResult"
 import styles from "../stylesheets/Countries.module.css"
 
-const Countries = ({ filter }) => {
-  const [countryList, setCountryList] = useState([])
-  const [filteredList, setFilteredList] = useState([])
-  const [activeCountry, setActiveCountry] = useState({})
+type Country = {
+  capital: string;
+  code: string;
+  continent: {
+    code: string;
+  };
+  currency: string;
+  languages: {
+    name: {
+      name: string[];
+    };
+  };
+  name: string;
+};
+
+interface Props {
+  filter: string;
+}
+
+const Countries: React.FC<Props> = ({ filter }): JSX.Element => {
+  const [countryList, setCountryList] = useState<Country[]>([])
+  const [filteredList, setFilteredList] = useState<Country[]>([])
+  const [activeCountry, setActiveCountry] = useState<Country | null>(null)
   const [modalIsOpen, setModalIsOpen] = useState(false)
-  const rndmCountriesInCont = []
-  const inSameCont = countryList.filter((c) => c.continent.code === activeCountry?.continent?.code)
-  const inSameContTotal = inSameCont.length
+  const rndmCountriesInCont: Country[] = []
+  const inSameCont = countryList.filter((c: Country) => c.continent.code === activeCountry?.continent?.code)
+  const inSameContTotal: number = inSameCont.length
 
   for (let i = 0; i < 3; i++) {
     const randomCountry = inSameCont[Math.floor(Math.random() * inSameCont.length)]
@@ -24,17 +43,18 @@ const Countries = ({ filter }) => {
   }
 
   const fetch = async () => {
-    const response = await fetchCountries()
+    let response: any;
+    response = await fetchCountries()
     setCountryList(response.data.countries)
   }
 
-  const escape = (e) => {
+  const escape = (e: KeyboardEvent) => {
     if (e.keyCode === 27) {
       setModalIsOpen(false)
     }
   }
 
-  const countryCards = filteredList.map((country) => (
+  const countryCards: React.ReactNode[] = filteredList.map((country: Country) => (
     <CountryCard
       key={country.code}
       country={country}
@@ -53,7 +73,7 @@ const Countries = ({ filter }) => {
   }, [])
 
   useEffect(() => {
-    const filteredAndSorted = [
+    const filteredAndSorted: Country[] = [
       ...findMatchInBeginning(countryList, filter),
       ...findMatchElsewhere(countryList, filter),
     ]

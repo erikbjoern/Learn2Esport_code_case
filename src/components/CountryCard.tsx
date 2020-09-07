@@ -4,12 +4,37 @@ import { scrollIntoView } from "../helpers/scrollIntoView"
 import { continents } from "../modules/continents"
 import FlagIcon from "../modules/flagIcon"
 
-const CountryCard = ({ country, setActiveCountry, modalIsOpen, setModalIsOpen, fromModal }) => {
-  if (!country) return
+interface Country {
+  capital: string;
+  code: string;
+  continent: {
+    code: string;
+  };
+  currency: string;
+  languages: {
+    name: {
+      name: string[];
+    };
+  };
+  name: string;
+};
+
+interface Props {
+  country: Country;
+  setActiveCountry: React.Dispatch<React.SetStateAction<Country | null>>;
+  modalIsOpen: boolean;
+  setModalIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  fromModal: boolean;
+}
+
+const CountryCard: React.FC<Props> = ({ country, setActiveCountry, modalIsOpen, setModalIsOpen, fromModal }): any => {
+
+
+  if (!country) return null
 
   const languagesArr = Object.entries(country.languages).map(([k, v]) => v.name)
   const capital = country.capital
-  const continent = continents[country.continent.code]
+  const continent: string[] = continents[country.continent.code]
   const languages = languagesArr.join(", ")
   const currency = country.currency?.split(",").join(", ")
 
@@ -28,9 +53,15 @@ const CountryCard = ({ country, setActiveCountry, modalIsOpen, setModalIsOpen, f
       )
     })
 
-  const onClickHandler = (e) => {
-    if (e.keyCode && e.keyCode !== 13) return null
+  const onEnterHandler = (event: React.KeyboardEvent<HTMLInputElement>): void => {
+    if (event.keyCode === 13) openModal()
+  }
 
+  const onClickHandler = () => {
+    openModal()
+  }
+
+  const openModal = () => {
     setModalIsOpen(true)
     setActiveCountry(country)
 
@@ -43,8 +74,8 @@ const CountryCard = ({ country, setActiveCountry, modalIsOpen, setModalIsOpen, f
     <div
       className={fromModal ? styles.modalContainer : styles.container}
       onClick={onClickHandler}
-      tabIndex={fromModal ? 0 : modalIsOpen ? "" : 0}
-      onKeyDown={onClickHandler}
+      tabIndex={fromModal ? 0 : modalIsOpen ? undefined : 0}
+      onKeyDown={onEnterHandler}
     >
       <div className={styles.flag}>
         <FlagIcon code={country.code.toLowerCase()} size={"3x"} />
