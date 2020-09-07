@@ -1,10 +1,10 @@
-import React, { useEffect } from "react"
-import styles from "../stylesheets/Modal.module.css"
-import FlagIcon from "../modules/flagIcon"
-import { continentNames } from "../modules/continents"
+import React, { useEffect, useState } from "react"
 import CountryCard from "./CountryCard"
+import FlagIcon from "../modules/flagIcon"
 import { scrollIntoView } from "../helpers/scrollIntoView"
+import { continentNames } from "../modules/continents"
 import { Country } from "../types"
+import styles from "../stylesheets/Modal.module.css"
 
 interface Props {
   country: Country
@@ -21,19 +21,30 @@ const Modal: React.FC<Props> = ({
   setActiveCountry,
   rndmCountriesInCont,
   total,
-  setFilter
+  setFilter,
 }): JSX.Element => {
+  const [closing, setClosing] = useState(false)
   const continentName = continentNames[country.continent.code]
+  const scrollIfTooSmall: any = scrollIntoView("small viewport")
 
   useEffect(() => {
-    window.addEventListener("resize", scrollIntoView)
+    window.addEventListener("resize", scrollIfTooSmall)
 
-    return () => window.removeEventListener("resize", scrollIntoView)
-  }, [])
+    return () => window.removeEventListener("resize", scrollIfTooSmall)
+  }, [scrollIfTooSmall])
+
 
   const searchByContinent = () => {
-    setActiveCountry(null)
-    setFilter(continentName)
+    setClosing(true)
+
+    
+    setTimeout(() => {   
+      scrollIntoView("search by continent")
+    }, 200)
+    setTimeout(() => {
+      setActiveCountry(null)
+      setFilter(continentName)
+    }, 700)
   }
 
   const otherCountries = rndmCountriesInCont.map((country: Country) => (
@@ -48,8 +59,11 @@ const Modal: React.FC<Props> = ({
 
   return (
     <>
-      <div className={styles.overlay} onClick={() => setActiveCountry(null)} />
-      <div className={styles.modal}>
+      <div
+        className={closing ? styles.fadeOutOverlay : styles.overlay}
+        onClick={() => setActiveCountry(null)}
+      />
+      <div className={closing ? styles.closingModal : styles.modal}>
         <div className={styles.topContainer}>
           <div className={styles.flag}>
             <FlagIcon code={country.code.toLowerCase()} size={"5x"} />
@@ -59,13 +73,11 @@ const Modal: React.FC<Props> = ({
             <p className={styles.continent}>{continentName}</p>
           </div>
         </div>
-        <div className={styles.bottomContainer}>
-          <p className={styles.otherCountriesText}>
-            Other countries in {continentName}
-          </p>
+        <div className={closing ? styles.closingBtmCont : styles.bottomContainer}>
+          <p className={styles.otherCountriesText}>Other countries in {continentName}</p>
           {otherCountries}
           <p className={styles.count} onClick={searchByContinent}>
-            {total > 4 && `+ ${total - 4} more`}
+            {!closing && total > 4 && `+ ${total - 4} more`}
           </p>
         </div>
       </div>

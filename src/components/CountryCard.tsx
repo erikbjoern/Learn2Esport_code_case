@@ -52,7 +52,7 @@ const CountryCard: React.FC<Props> = ({
     setActiveCountry(country)
 
     if (!activeCountry) {
-      scrollIntoView()
+      scrollIntoView("small viewport")
     }
   }
 
