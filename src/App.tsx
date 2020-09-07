@@ -15,7 +15,7 @@ const App: React.FC = (): JSX.Element => {
       <div className={styles.container}>
         <Description />
         <SearchField filter={filter} setFilter={setFilter} />
-        <Countries filter={filter.toLowerCase()} />
+        <Countries filter={filter.toLowerCase()} setFilter={setFilter} />
       </div>
     </div>
   )

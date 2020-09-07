@@ -100,6 +100,11 @@
   visibility: hidden;
 }
 
+.count:hover {
+  cursor: pointer;
+  opacity: .6;
+}
+
 @-webkit-keyframes fade-in {
   from {
     visibility: visible;

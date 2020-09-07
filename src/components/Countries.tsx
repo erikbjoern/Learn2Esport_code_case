@@ -14,9 +14,10 @@ interface Countries {
 
 interface Props {
   filter: string
+  setFilter: React.Dispatch<React.SetStateAction<string>>
 }
 
-const Countries: React.FC<Props> = ({ filter }): JSX.Element => {
+const Countries: React.FC<Props> = ({ filter, setFilter }): JSX.Element => {
   const [countryList, setCountryList] = useState<Country[]>([])
   const [filteredList, setFilteredList] = useState<Country[]>([])
   const [activeCountry, setActiveCountry] = useState<Country | null>(null)
@@ -103,13 +104,16 @@ const Countries: React.FC<Props> = ({ filter }): JSX.Element => {
 
   return (
     <>
-      {activeCountry && <Modal
-        country={activeCountry}
-        activeCountry={activeCountry}
-        setActiveCountry={setActiveCountry}
-        rndmCountriesInCont={rndmCountriesInCont}
-        total={inSameContTotal}
-      />}
+      {activeCountry && 
+        <Modal
+          country={activeCountry}
+          activeCountry={activeCountry}
+          setActiveCountry={setActiveCountry}
+          rndmCountriesInCont={rndmCountriesInCont}
+          total={inSameContTotal}
+          setFilter={setFilter}
+        />
+      }
       <div>
         <h2 className={styles.heading}>
           {heading ? heading : "All countries"}

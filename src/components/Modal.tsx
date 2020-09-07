@@ -12,6 +12,7 @@ interface Props {
   setActiveCountry: React.Dispatch<React.SetStateAction<Country | null>>
   rndmCountriesInCont: Country[]
   total: number
+  setFilter: React.Dispatch<React.SetStateAction<string>>
 }
 
 const Modal: React.FC<Props> = ({
@@ -20,12 +21,20 @@ const Modal: React.FC<Props> = ({
   setActiveCountry,
   rndmCountriesInCont,
   total,
+  setFilter
 }): JSX.Element => {
+  const continentName = continentNames[country.continent.code]
+
   useEffect(() => {
     window.addEventListener("resize", scrollIntoView)
 
     return () => window.removeEventListener("resize", scrollIntoView)
   }, [])
+
+  const searchByContinent = () => {
+    setActiveCountry(null)
+    setFilter(continentName)
+  }
 
   const otherCountries = rndmCountriesInCont.map((country: Country) => (
     <CountryCard
@@ -47,15 +56,17 @@ const Modal: React.FC<Props> = ({
           </div>
           <div className={styles.textContainer}>
             <h3 className={styles.heading}>{country.name}</h3>
-            <p className={styles.continent}>{continentNames[country.continent.code]}</p>
+            <p className={styles.continent}>{continentName}</p>
           </div>
         </div>
         <div className={styles.bottomContainer}>
           <p className={styles.otherCountriesText}>
-            Other countries in {continentNames[country.continent.code]}
+            Other countries in {continentName}
           </p>
           {otherCountries}
-          <p className={styles.count}>{total > 4 && `+ ${total - 4} more`}</p>
+          <p className={styles.count} onClick={searchByContinent}>
+            {total > 4 && `+ ${total - 4} more`}
+          </p>
         </div>
       </div>
     </>
