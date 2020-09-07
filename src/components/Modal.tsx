@@ -4,28 +4,34 @@ import FlagIcon from "../modules/flagIcon"
 import { continents } from "../modules/continents"
 import CountryCard from "./CountryCard"
 import { scrollIntoView } from "../helpers/scrollIntoView"
+import { Country } from "../types"
 
-const Modal = ({
+interface Props {
+  country: Country
+  activeCountry: Country
+  setActiveCountry: React.Dispatch<React.SetStateAction<Country | null>>
+  rndmCountriesInCont: Country[]
+  total: number
+}
+
+const Modal: React.FC<Props> = ({
   country,
-  rndmCountriesInCont,
-  isOpen,
-  setModalIsOpen,
-  total,
+  activeCountry,
   setActiveCountry,
-}) => {
+  rndmCountriesInCont,
+  total,
+}): JSX.Element => {
   useEffect(() => {
     window.addEventListener("resize", scrollIntoView)
 
     return () => window.removeEventListener("resize", scrollIntoView)
   }, [])
 
-  if (!isOpen) return null
-
-  const otherCountries = rndmCountriesInCont.map((country) => (
+  const otherCountries = rndmCountriesInCont.map((country: Country) => (
     <CountryCard
       key={country.code}
       country={country}
-      setModalIsOpen={setModalIsOpen}
+      activeCountry={activeCountry}
       setActiveCountry={setActiveCountry}
       fromModal={true}
     />
@@ -33,7 +39,7 @@ const Modal = ({
 
   return (
     <>
-      <div className={styles.overlay} onClick={() => setModalIsOpen(false)} />
+      <div className={styles.overlay} onClick={() => setActiveCountry(null)} />
       <div className={styles.modal}>
         <div className={styles.topContainer}>
           <div className={styles.flag}>

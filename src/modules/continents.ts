@@ -1,4 +1,4 @@
-export const continents = {
+export const continents: any = {
   "AF" : "Africa",
   "AN" : "Antarctica",
   "AS" : "Asia",
