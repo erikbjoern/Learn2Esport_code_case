@@ -123,6 +123,8 @@ const Countries: React.FC<Props> = ({ filter, setFilter }): JSX.Element => {
           {filteredList.length} / {countryList.length}
         </p>
         <div className={styles.cardContainer}>{countryCards}</div>
+        {loading && <p className={styles.loading}>Loading countries . . .</p>}
+        {error && <p className={styles.error}>Something went wrong :( <br/><br/> Try reloading!</p>}
       </div>
     </>
   )
