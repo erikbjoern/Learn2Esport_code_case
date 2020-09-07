@@ -4,21 +4,7 @@ import FlagIcon from "../modules/flagIcon"
 import { continents } from "../modules/continents"
 import CountryCard from "./CountryCard"
 import { scrollIntoView } from "../helpers/scrollIntoView"
-
-type Country = {
-  capital: string;
-  code: string;
-  continent: {
-    code: string;
-  };
-  currency: string;
-  languages: {
-    name: {
-      name: string[];
-    };
-  };
-  name: string;
-};
+import { Country } from "../types"
 
 interface Props {
   country: Country | null;

@@ -4,21 +4,7 @@ import Modal from "./Modal"
 import { fetchCountries } from "../modules/fetchCountries"
 import { findMatchInBeginning, findMatchElsewhere } from "../helpers/sortResult"
 import styles from "../stylesheets/Countries.module.css"
-
-type Country = {
-  capital: string;
-  code: string;
-  continent: {
-    code: string;
-  };
-  currency: string;
-  languages: {
-    name: {
-      name: string[];
-    };
-  };
-  name: string;
-};
+import { Country } from "../types"
 
 interface Props {
   filter: string;

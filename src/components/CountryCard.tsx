@@ -3,21 +3,7 @@ import styles from "../stylesheets/CountryCard.module.css"
 import { scrollIntoView } from "../helpers/scrollIntoView"
 import { continents } from "../modules/continents"
 import FlagIcon from "../modules/flagIcon"
-
-interface Country {
-  capital: string;
-  code: string;
-  continent: {
-    code: string;
-  };
-  currency: string;
-  languages: {
-    name: {
-      name: string[];
-    };
-  };
-  name: string;
-};
+import { Country } from "../types"
 
 interface Props {
   country: Country;
