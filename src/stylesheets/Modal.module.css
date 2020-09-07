@@ -23,8 +23,9 @@
   align-items: center;
   -webkit-animation: fade-in-modal .8s ease-out forwards;
   animation: fade-in-modal .8s ease-out forwards;
-  background-color: #292d44;
+  background-color: secondary;
   border-radius: 3px;
+  box-shadow: 0px 5px 12px 1px #0e0f1666;
   color: text-primary;
   composes: flexbox from "./variables/mixins.css";
   flex-direction: column;
