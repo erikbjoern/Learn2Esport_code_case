@@ -66,10 +66,13 @@ body {
 ::-webkit-scrollbar-thumb {
   height: 20%;
   background: #171a1da9;
-  border: 1px solid #ffffff99;
+  border: 1px solid #eeeeee7d;
+  border-right: 2px solid #eeeeee7d;
   border-radius: 5px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
   background: #171a1de6;
+  border: 1px solid #1d96e7cd;
+  border-right: 2px solid #1d96e7a9;
 }

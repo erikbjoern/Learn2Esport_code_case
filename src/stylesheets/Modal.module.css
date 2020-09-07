@@ -89,6 +89,7 @@
 .otherCountriesText {
   align-self: start;
   font-size: 10px;
+  margin-bottom: -2px;
 }
 
 .bottomContainer,
@@ -123,7 +124,8 @@
 
 .count:hover {
   cursor: pointer;
-  opacity: 0.6;
+  color: #1d96e7cd;
+  font-weight: 500;
 }
 
 @-webkit-keyframes fade-in {
