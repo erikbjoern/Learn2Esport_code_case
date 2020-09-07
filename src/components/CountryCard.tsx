@@ -1,7 +1,7 @@
 import React from "react"
 import styles from "../stylesheets/CountryCard.module.css"
 import { scrollIntoView } from "../helpers/scrollIntoView"
-import { continents } from "../modules/continents"
+import { continentNames } from "../modules/continents"
 import FlagIcon from "../modules/flagIcon"
 import { Country } from "../types"
 
@@ -21,7 +21,7 @@ const CountryCard: React.FC<Props> = ({
 
   const languagesArr = Object.entries(country.languages).map(([k, v]) => v.name)
   const capital = country.capital
-  const continent: string[] = continents[country.continent.code]
+  const continent: string[] = continentNames[country.continent.code]
   const languages = languagesArr.join(", ")
   const currency = country.currency?.split(",").join(", ")
 
