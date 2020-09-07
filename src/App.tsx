@@ -5,7 +5,7 @@ import SearchField from "./components/SearchField"
 import Countries from "./components/Countries"
 import styles from "./stylesheets/App.module.css"
 
-const App = () => {
+const App: React.FC = () => {
   const [filter, setFilter] = useState("")
 
   return (

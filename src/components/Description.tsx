@@ -1,7 +1,7 @@
 import React from "react"
 import styles from "../stylesheets/Description.module.css"
 
-const Description = () => {
+const Description: React.FC = () => {
   return (
     <div className={styles.container}>
       <div className={styles.textContainer}>
