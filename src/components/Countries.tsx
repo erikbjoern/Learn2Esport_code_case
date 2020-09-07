@@ -41,6 +41,7 @@ const Countries: React.FC<Props> = ({ filter, setFilter }): JSX.Element => {
           name
         }
         name
+        native
       }
     }
   `

@@ -11,4 +11,5 @@ export type Country = {
     };
   };
   name: string;
+  native: string;
 }
