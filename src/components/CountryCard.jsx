@@ -1,13 +1,13 @@
 import React from "react"
 import styles from "../stylesheets/CountryCard.module.css"
+import { scrollIntoView } from "../helpers/scrollIntoView"
 import { continents } from "../modules/continents"
-import FlagIcon from '../modules/flagIcon'
+import FlagIcon from "../modules/flagIcon"
 
-const CountryCard = ({ country }) => {
+const CountryCard = ({ country, setActiveCountry, modalIsOpen, setModalIsOpen, fromModal }) => {
   if (!country) return
 
   const languagesArr = Object.entries(country.languages).map(([k, v]) => v.name)
-
   const capital = country.capital
   const continent = continents[country.continent.code]
   const languages = languagesArr.join(", ")
@@ -19,17 +19,33 @@ const CountryCard = ({ country }) => {
     .filter((w) => w != null && w !== "")
     .map((w, i) => {
       return i === 0 ? (
-        <span>{w}</span>
+        <span key={i}>{w}</span>
       ) : (
-        <>
+        <span key={i}>
           <span className={styles.bullet}> ● </span>
           <span>{w}</span>
-        </>
+        </span>
       )
     })
 
+  const onClickHandler = (e) => {
+    if (e.keyCode && e.keyCode !== 13) return null
+
+    setModalIsOpen(true)
+    setActiveCountry(country)
+
+    if (!fromModal) {
+      scrollIntoView()
+    }
+  }
+
   return (
-    <div className={styles.container}>
+    <div
+      className={fromModal ? styles.modalContainer : styles.container}
+      onClick={onClickHandler}
+      tabIndex={fromModal ? 0 : modalIsOpen ? "" : 0}
+      onKeyDown={onClickHandler}
+    >
       <div className={styles.flag}>
         <FlagIcon code={country.code.toLowerCase()} size={"3x"} />
       </div>

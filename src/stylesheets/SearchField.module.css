@@ -4,7 +4,7 @@
 .container {
   background-color: primary;
   border-radius: 3px;
-  display: flex;
+  composes: flexbox from "./variables/mixins.css";
   margin-bottom: 18px;
   padding: 15px 25px;
 }
@@ -19,7 +19,7 @@
   background-color: #5c6989;
   border-radius: 22px;
   color: text-primary;
-  display: flex;
+  composes: flexbox from "./variables/mixins.css";
   width: 100%;
 }
 

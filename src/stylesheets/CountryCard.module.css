@@ -3,11 +3,12 @@
 @value primary, shadow, text-primary, text-secondary from colors;
 @value main-font from fonts;
 
-.container {
+.container,
+.modalContainer {
   background-color: primary;
   border-radius: 3px;
   box-shadow: shadow;
-  display: flex;
+  composes: flexbox from "./variables/mixins.css";
   flex-direction: row;
   padding: 18px;
   transition: background-color .3s, box-shadow 1s, transform 1s;
@@ -17,7 +18,14 @@
   background-color: #383e5780;
   box-shadow: 1px 5px 6px 2px #25252265;
   cursor: pointer;
+  -webkit-transform: translate(2px, -5px);
+  -ms-transform: translate(2px, -5px);
   transform: translate(2px, -5px);
+}
+
+.modalContainer:hover {
+  background-color: #383e5760;
+  cursor: pointer;
 }
 
 .flag {
@@ -28,7 +36,7 @@
 }
 
 .textContainer {
-  display: flex;
+  composes: flexbox from "./variables/mixins.css";
   flex-direction: column;
   justify-content: space-between;
   margin-left: 20px;
@@ -56,4 +64,12 @@
 .bullet {
   position: relative;
   top: -.5px;
+}
+
+@supports not (display: grid) {
+ .container,
+ .modalContainer {
+  flex: "1 1 40%";
+  margin: 10px;
+ }
 }

@@ -13,7 +13,7 @@
   border-radius: 3px;
   box-shadow: shadow;
   color: text-primary;
-  display: flex;
+  composes: flexbox from "./variables/mixins.css";
   flex-direction: column;
   height: 18vw;
   justify-content: center;

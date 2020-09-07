@@ -1,2 +1,2 @@
-@value header-height: 4vw;
-@value static-header-height: 56px;
+@value header-height: calc(4vw + 10px);
+@value static-header-height: 66px;

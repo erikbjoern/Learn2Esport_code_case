@@ -1,0 +1,221 @@
+@value colors: "./variables/colors.css";
+@value fonts: "./variables/fonts.css";
+@value measures: "./variables/measures.css";
+@value secondary, text-primary from colors;
+@value main-font from fonts;
+@value header-height, static-header-height from measures;
+
+.overlay {
+  -webkit-animation: fade-in .2s;
+  animation: fade-in .2s;
+  background-color: #0b1626;
+  cursor: pointer;
+  height: 100vh;
+  left: 0;
+  opacity: .8;
+  position: fixed;
+  top: header-height;
+  width: 100vw;
+  z-index: 2;
+}
+
+.modal {
+  align-items: center;
+  -webkit-animation: fade-in-modal .8s ease-out forwards;
+  animation: fade-in-modal .8s ease-out forwards;
+  background-color: #292d44;
+  border-radius: 3px;
+  color: text-primary;
+  composes: flexbox from "./variables/mixins.css";
+  flex-direction: column;
+  font-family: main-font;
+  left: calc(50vw - 220px);
+  margin-top: 30px;
+  max-height: 560px;
+  padding: 40px 20px 15px;
+  position: fixed;
+  top: calc(14vh - 40px);
+  transition: max-height .9s;
+  width: 400px;
+  z-index: 2;
+}
+
+.topContainer {
+  align-items: center;
+  composes: flexbox from "./variables/mixins.css";
+  flex-direction: column;
+  margin: 20px 0;
+}
+
+.textContainer {
+  align-items: center;
+  composes: flexbox from "./variables/mixins.css";
+  flex-direction: column;
+  text-align: center;
+  width: 100%;
+}
+
+.flag {
+  border-radius: 2px;
+  min-height: 80px !important;
+  min-width: fit-content !important;
+  overflow: hidden;
+}
+
+.heading {
+  margin-bottom: 0;
+}
+
+.continent {
+  font-size: 12px;
+  margin-top: 3px;
+}
+
+.otherCountriesText {
+  align-self: start;
+  font-size: 10px;
+}
+
+.bottomContainer {
+  align-items: stretch;
+  -webkit-animation: fade-in-bottom .6s .3s linear forwards;
+  animation: fade-in-bottom .6s .3s linear forwards;
+  animation-fill-mode: forwards;
+  composes: flexbox from "./variables/mixins.css";
+  flex-direction: column;
+  gap: 12px;
+  height: 100%;
+  max-height: 100%;
+  overflow: hidden;
+  transition: max-height .2s;
+  width: 100%;
+}
+
+.count {
+  align-self: center;
+  animation: fade-in .2s .8s forwards;
+  bottom: 5px;
+  position: absolute;
+  visibility: hidden;
+}
+
+@-webkit-keyframes fade-in {
+  from {
+    visibility: visible;
+    opacity: 0;
+  }
+
+  to {
+    visibility: visible;
+  }
+}
+@keyframes fade-in {
+  from {
+    visibility: visible;
+    opacity: 0;
+  }
+
+  to {
+    visibility: visible;
+  }
+}
+
+@-webkit-keyframes fade-in-modal {
+  from {
+    height: 190px;
+    opacity: 0;
+  }
+  60% {
+    height: 190px;
+    opacity: 1;
+  }
+  to {
+    height: 560px;
+  }
+}
+@keyframes fade-in-modal {
+  from {
+    height: 190px;
+    opacity: 0;
+  }
+  60% {
+    height: 190px;
+    opacity: 1;
+  }
+  to {
+    height: 560px;
+  }
+}
+
+@-webkit-keyframes fade-in-bottom {
+  from {
+    height: 0;
+  }
+}
+@keyframes fade-in-bottom {
+  from {
+    height: 0;
+  }
+}
+
+@media only screen and (max-height: 700px) {
+  .modal {
+    position: absolute;
+    left: calc(38vw - 200px);
+  }
+}
+
+@media only screen and (max-width: 700px) and (max-height: 800px) {
+  .topContainer {
+    flex-direction: row;
+    height: 80px;
+    margin-top: -10px;
+    width: 90%;
+  }
+
+  .textContainer {
+    height: inherit;
+    justify-content: space-around;
+    margin-left: 30px;
+  }
+
+  @-webkit-keyframes fade-in-modal {
+    from {
+      height: 90px;
+      opacity: 0;
+    }
+    60% {
+      height: 90px;
+      opacity: 1;
+    }
+    to {
+      height: 480px;
+    }
+  }
+  @keyframes fade-in-modal {
+    from {
+      height: 90px;
+      opacity: 0;
+    }
+    60% {
+      height: 90px;
+      opacity: 1;
+    }
+    to {
+      height: 480px;
+    }
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .modal {
+    left: 5vw;
+    width: 80%;
+  }
+}
+
+@media only screen and (min-width: 1400px) {
+  .overlay {
+    top: static-header-height;
+  }
+}
