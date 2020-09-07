@@ -6,17 +6,20 @@ import FlagIcon from "../modules/flagIcon"
 import { Country } from "../types"
 
 interface Props {
-  country: Country;
-  setActiveCountry: React.Dispatch<React.SetStateAction<Country | null>>;
-  modalIsOpen: boolean;
-  setModalIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  fromModal: boolean;
+  country: Country
+  setActiveCountry: React.Dispatch<React.SetStateAction<Country | null>>
+  modalIsOpen: boolean
+  setModalIsOpen: React.Dispatch<React.SetStateAction<boolean>>
+  fromModal: boolean
 }
 
-const CountryCard: React.FC<Props> = ({ country, setActiveCountry, modalIsOpen, setModalIsOpen, fromModal }): any => {
-
-
-  if (!country) return null
+const CountryCard: React.FC<Props> = ({
+  country,
+  setActiveCountry,
+  modalIsOpen,
+  setModalIsOpen,
+  fromModal,
+}): JSX.Element => {
 
   const languagesArr = Object.entries(country.languages).map(([k, v]) => v.name)
   const capital = country.capital

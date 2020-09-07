@@ -7,12 +7,12 @@ import { scrollIntoView } from "../helpers/scrollIntoView"
 import { Country } from "../types"
 
 interface Props {
-  country: Country | null;
-  rndmCountriesInCont: Country[];
-  isOpen: boolean;
-  setModalIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  total: number;
-  setActiveCountry: React.Dispatch<React.SetStateAction<Country | null>>;
+  country: Country
+  rndmCountriesInCont: Country[]
+  isOpen: boolean
+  setModalIsOpen: React.Dispatch<React.SetStateAction<boolean>>
+  total: number
+  setActiveCountry: React.Dispatch<React.SetStateAction<Country | null>>
 }
 
 const Modal: React.FC<Props> = ({
@@ -22,14 +22,12 @@ const Modal: React.FC<Props> = ({
   setModalIsOpen,
   total,
   setActiveCountry,
-}) => {
+}): JSX.Element => {
   useEffect(() => {
     window.addEventListener("resize", scrollIntoView)
 
     return () => window.removeEventListener("resize", scrollIntoView)
   }, [])
-
-  if (!isOpen || !country) return null
 
   const otherCountries = rndmCountriesInCont.map((country: Country) => (
     <CountryCard

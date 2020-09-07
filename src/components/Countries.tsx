@@ -94,14 +94,14 @@ const Countries: React.FC<Props> = ({ filter }): JSX.Element => {
 
   return (
     <>
-      <Modal
+      {activeCountry && <Modal
         country={activeCountry}
         setActiveCountry={setActiveCountry}
         isOpen={modalIsOpen}
         setModalIsOpen={setModalIsOpen}
         rndmCountriesInCont={rndmCountriesInCont}
         total={inSameContTotal}
-      />
+      />}
       <div>
         <h2 className={styles.heading}>All countries</h2>
         <p className={styles.amount}>

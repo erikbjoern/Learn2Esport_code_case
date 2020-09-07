@@ -2,7 +2,7 @@ import React from "react"
 import logo from "../images/logo.png"
 import styles from "../stylesheets/Header.module.css"
 
-const Header: React.FC = () => {
+const Header: React.FC = (): JSX.Element => {
   return (
     <div className={styles.header}>
       <img
