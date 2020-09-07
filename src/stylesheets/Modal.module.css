@@ -29,7 +29,6 @@
   composes: flexbox from "./variables/mixins.css";
   flex-direction: column;
   font-family: main-font;
-  height: fit-content;
   left: calc(50vw - 220px);
   margin-top: 30px;
   max-height: 560px;
@@ -175,6 +174,33 @@
     height: inherit;
     justify-content: space-around;
     margin-left: 30px;
+  }
+
+  @-webkit-keyframes fade-in-modal {
+    from {
+      height: 90px;
+      opacity: 0;
+    }
+    60% {
+      height: 90px;
+      opacity: 1;
+    }
+    to {
+      height: 460px;
+    }
+  }
+  @keyframes fade-in-modal {
+    from {
+      height: 90px;
+      opacity: 0;
+    }
+    60% {
+      height: 90px;
+      opacity: 1;
+    }
+    to {
+      height: 460px;
+    }
   }
 }
 
