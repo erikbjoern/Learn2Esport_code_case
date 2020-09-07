@@ -18,7 +18,6 @@ const Countries: React.FC<Props> = ({ filter }): JSX.Element => {
   const [countryList, setCountryList] = useState<Country[]>([])
   const [filteredList, setFilteredList] = useState<Country[]>([])
   const [activeCountry, setActiveCountry] = useState<Country | null>(null)
-  const [modalIsOpen, setModalIsOpen] = useState(false)
   const rndmCountriesInCont: Country[] = []
   const inSameCont: Country[] = countryList
     ? countryList.filter((c: Country) => c.continent.code === activeCountry?.continent?.code)
@@ -68,7 +67,7 @@ const Countries: React.FC<Props> = ({ filter }): JSX.Element => {
 
   const escape = (e: KeyboardEvent) => {
     if (e.keyCode === 27) {
-      setModalIsOpen(false)
+      setActiveCountry(null)
     }
   }
 
@@ -86,8 +85,7 @@ const Countries: React.FC<Props> = ({ filter }): JSX.Element => {
       key={country.code}
       country={country}
       setActiveCountry={setActiveCountry}
-      modalIsOpen={modalIsOpen}
-      setModalIsOpen={setModalIsOpen}
+      activeCountry={activeCountry}
       fromModal={false}
     />
   ))
@@ -96,9 +94,8 @@ const Countries: React.FC<Props> = ({ filter }): JSX.Element => {
     <>
       {activeCountry && <Modal
         country={activeCountry}
+        activeCountry={activeCountry}
         setActiveCountry={setActiveCountry}
-        isOpen={modalIsOpen}
-        setModalIsOpen={setModalIsOpen}
         rndmCountriesInCont={rndmCountriesInCont}
         total={inSameContTotal}
       />}

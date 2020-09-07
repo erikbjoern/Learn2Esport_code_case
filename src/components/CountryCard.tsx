@@ -7,17 +7,15 @@ import { Country } from "../types"
 
 interface Props {
   country: Country
+  activeCountry: Country | null
   setActiveCountry: React.Dispatch<React.SetStateAction<Country | null>>
-  modalIsOpen: boolean
-  setModalIsOpen: React.Dispatch<React.SetStateAction<boolean>>
   fromModal: boolean
 }
 
 const CountryCard: React.FC<Props> = ({
   country,
+  activeCountry,
   setActiveCountry,
-  modalIsOpen,
-  setModalIsOpen,
   fromModal,
 }): JSX.Element => {
 
@@ -51,19 +49,18 @@ const CountryCard: React.FC<Props> = ({
   }
 
   const openModal = () => {
-    setModalIsOpen(true)
     setActiveCountry(country)
 
-    if (!fromModal) {
+    if (!activeCountry) {
       scrollIntoView()
     }
   }
 
   return (
     <div
-      className={fromModal ? styles.modalContainer : styles.container}
+      className={activeCountry ? styles.modalContainer : styles.container}
       onClick={onClickHandler}
-      tabIndex={fromModal ? 0 : modalIsOpen ? undefined : 0}
+      tabIndex={fromModal ? 0 : activeCountry ? undefined : 0}
       onKeyDown={onEnterHandler}
     >
       <div className={styles.flag}>

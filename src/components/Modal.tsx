@@ -8,20 +8,18 @@ import { Country } from "../types"
 
 interface Props {
   country: Country
-  rndmCountriesInCont: Country[]
-  isOpen: boolean
-  setModalIsOpen: React.Dispatch<React.SetStateAction<boolean>>
-  total: number
+  activeCountry: Country
   setActiveCountry: React.Dispatch<React.SetStateAction<Country | null>>
+  rndmCountriesInCont: Country[]
+  total: number
 }
 
 const Modal: React.FC<Props> = ({
   country,
-  rndmCountriesInCont,
-  isOpen,
-  setModalIsOpen,
-  total,
+  activeCountry,
   setActiveCountry,
+  rndmCountriesInCont,
+  total,
 }): JSX.Element => {
   useEffect(() => {
     window.addEventListener("resize", scrollIntoView)
@@ -33,16 +31,15 @@ const Modal: React.FC<Props> = ({
     <CountryCard
       key={country.code}
       country={country}
-      setModalIsOpen={setModalIsOpen}
+      activeCountry={activeCountry}
       setActiveCountry={setActiveCountry}
-      modalIsOpen={true}
       fromModal={true}
     />
   ))
 
   return (
     <>
-      <div className={styles.overlay} onClick={() => setModalIsOpen(false)} />
+      <div className={styles.overlay} onClick={() => setActiveCountry(null)} />
       <div className={styles.modal}>
         <div className={styles.topContainer}>
           <div className={styles.flag}>
