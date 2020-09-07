@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react"
 import CountryCard from "./CountryCard"
 import FlagIcon from "../modules/flagIcon"
-import { scrollIntoView } from "../helpers/scrollIntoView"
 import { continentNames } from "../modules/continents"
 import { Country } from "../types"
 import styles from "../stylesheets/Modal.module.css"
@@ -25,21 +24,24 @@ const Modal: React.FC<Props> = ({
 }): JSX.Element => {
   const [closing, setClosing] = useState(false)
   const continentName = continentNames[country.continent.code]
-  const scrollIfTooSmall: any = scrollIntoView("small viewport")
+
+  const scrollIfTooSmall = () => {
+    window.innerHeight < 700 && window.scrollTo({ top: 100, behavior: "smooth" })
+  }
 
   useEffect(() => {
     window.addEventListener("resize", scrollIfTooSmall)
 
     return () => window.removeEventListener("resize", scrollIfTooSmall)
-  }, [scrollIfTooSmall])
+  }, [])
 
 
   const searchByContinent = () => {
     setClosing(true)
 
     
-    setTimeout(() => {   
-      scrollIntoView("search by continent")
+    setTimeout(() => {
+      window.scrollTo({ top: 100, behavior: "smooth" })
     }, 200)
     setTimeout(() => {
       setActiveCountry(null)

@@ -1,6 +1,5 @@
 import React from "react"
 import styles from "../stylesheets/CountryCard.module.css"
-import { scrollIntoView } from "../helpers/scrollIntoView"
 import { continentNames } from "../modules/continents"
 import FlagIcon from "../modules/flagIcon"
 import { Country } from "../types"
@@ -51,8 +50,8 @@ const CountryCard: React.FC<Props> = ({
   const openModal = () => {
     setActiveCountry(country)
 
-    if (!activeCountry) {
-      scrollIntoView("small viewport")
+    if (!activeCountry && window.innerHeight < 700) {
+      window.scrollTo({ top: 100, behavior: "smooth" })
     }
   }
 
