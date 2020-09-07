@@ -3,7 +3,6 @@
 @value text-primary, text-secondary from colors;
 @value main-font from fonts;
 
-
 .heading {
   color: text-primary;
   font: 16px main-font;
@@ -19,13 +18,23 @@
 }
 
 .cardContainer {
+  display: -ms-grid;
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  grid-gap: 20px;
   gap: 20px;
 }
 
 @media only screen and (max-width: 650px) {
   .cardContainer {
     grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@supports not (display: grid) {
+  .cardContainer {
+    composes: flexbox from "./variables/mixins.css";
+    flex-wrap: "wrap";
+    margin: -10px;
   }
 }

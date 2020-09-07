@@ -7,7 +7,7 @@
   align-items: center;
   background-color: primary;
   box-shadow: 0px 0px 3px #252522;
-  display: flex;
+  composes: flexbox from "./variables/mixins.css";
   height: header-height;
   position: fixed;
   top: 0;

@@ -6,6 +6,7 @@
 @value header-height, static-header-height from measures;
 
 .overlay {
+  -webkit-animation: fade-in .2s;
   animation: fade-in .2s;
   background-color: #0b1626;
   cursor: pointer;
@@ -20,11 +21,12 @@
 
 .modal {
   align-items: center;
-  animation: fade-in-modal .8s ease-out;
+  -webkit-animation: fade-in-modal .8s ease-out forwards;
+  animation: fade-in-modal .8s ease-out forwards;
   background-color: #292d44;
   border-radius: 3px;
   color: text-primary;
-  display: flex;
+  composes: flexbox from "./variables/mixins.css";
   flex-direction: column;
   font-family: main-font;
   height: fit-content;
@@ -41,14 +43,14 @@
 
 .topContainer {
   align-items: center;
-  display: flex;
+  composes: flexbox from "./variables/mixins.css";
   flex-direction: column;
   margin-bottom: 15px;
 }
 
 .textContainer {
   align-items: center;
-  display: flex;
+  composes: flexbox from "./variables/mixins.css";
   flex-direction: column;
   width: 100%;
 }
@@ -76,8 +78,10 @@
 
 .bottomContainer {
   align-items: stretch;
+  -webkit-animation: fade-in-bottom .6s .3s linear forwards;
   animation: fade-in-bottom .6s .3s linear forwards;
-  display: flex;
+  animation-fill-mode: forwards;
+  composes: flexbox from "./variables/mixins.css";
   flex-direction: column;
   gap: 10px;
   height: 100%;
@@ -93,6 +97,16 @@
   visibility: hidden;
 }
 
+@-webkit-keyframes fade-in {
+  from {
+    visibility: visible;
+    opacity: 0;
+  }
+
+  to {
+    visibility: visible;
+  }
+}
 @keyframes fade-in {
   from {
     visibility: visible;
@@ -104,6 +118,19 @@
   }
 }
 
+@-webkit-keyframes fade-in-modal {
+  from {
+    height: 160px;
+    opacity: 0;
+  }
+  60% {
+    height: 160px;
+    opacity: 1;
+  }
+  to {
+    height: 540px;
+  }
+}
 @keyframes fade-in-modal {
   from {
     height: 160px;
@@ -118,6 +145,11 @@
   }
 }
 
+@-webkit-keyframes fade-in-bottom {
+  from {
+    height: 0;
+  }
+}
 @keyframes fade-in-bottom {
   from {
     height: 0;
