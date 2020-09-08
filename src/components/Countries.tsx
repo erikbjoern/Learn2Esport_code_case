@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react"
 import CountryCard from "./CountryCard"
 import Modal from "./Modal"
-import { findMatchInBeginning, findMatchElsewhere } from "../helpers/sortResult"
-import styles from "../stylesheets/Countries.module.css"
-import { Country } from "../types"
 import { gql, useQuery } from "@apollo/client"
+import { findMatchInBeginning, findMatchElsewhere } from "../helpers/sortResult"
+import { capitalize } from "../helpers/capitalize"
+import { continentNames, continentCodes } from "../modules/continents"
+import { Country } from "../types"
+import styles from "../stylesheets/Countries.module.css"
 
 interface Countries {
   countries: Country[]
@@ -12,16 +14,18 @@ interface Countries {
 
 interface Props {
   filter: string
+  setFilter: React.Dispatch<React.SetStateAction<string>>
 }
 
-const Countries: React.FC<Props> = ({ filter }): JSX.Element => {
+const Countries: React.FC<Props> = ({ filter, setFilter }): JSX.Element => {
   const [countryList, setCountryList] = useState<Country[]>([])
   const [filteredList, setFilteredList] = useState<Country[]>([])
   const [activeCountry, setActiveCountry] = useState<Country | null>(null)
-  const rndmCountriesInCont: Country[] = []
+  const [heading, setHeading] = useState("")
   const inSameCont: Country[] = countryList
-    ? countryList.filter((c: Country) => c.continent.code === activeCountry?.continent?.code)
-    : []
+  ? countryList.filter((c: Country) => c.continent.code === activeCountry?.continent?.code)
+  : []
+  const rndmCountriesInCont: Country[] = []
   const inSameContTotal: number = inSameCont.length
 
   const COUNTRIES = gql`
@@ -37,6 +41,7 @@ const Countries: React.FC<Props> = ({ filter }): JSX.Element => {
           name
         }
         name
+        native
       }
     }
   `
@@ -57,11 +62,19 @@ const Countries: React.FC<Props> = ({ filter }): JSX.Element => {
 
   useEffect(() => {
     if (countryList) {
-      const filteredAndSorted: Country[] = [
-        ...findMatchInBeginning(countryList, filter),
-        ...findMatchElsewhere(countryList, filter),
-      ]
-      setFilteredList(filteredAndSorted)
+      if (Object.values(continentNames).map((c: any) => c.toLowerCase()).includes(filter)) {
+        const continentName = capitalize(filter)
+        const searchByCont = countryList.filter((c: Country) => c.continent.code === continentCodes[continentName])
+        setFilteredList(searchByCont)
+        setHeading(continentName)
+      } else {
+        const filteredAndSorted: Country[] = [
+          ...findMatchInBeginning(countryList, filter),
+          ...findMatchElsewhere(countryList, filter),
+        ]
+        setFilteredList(filteredAndSorted)
+        setHeading("")
+      }
     }
   }, [filter, countryList])
 
@@ -92,19 +105,26 @@ const Countries: React.FC<Props> = ({ filter }): JSX.Element => {
 
   return (
     <>
-      {activeCountry && <Modal
-        country={activeCountry}
-        activeCountry={activeCountry}
-        setActiveCountry={setActiveCountry}
-        rndmCountriesInCont={rndmCountriesInCont}
-        total={inSameContTotal}
-      />}
+      {activeCountry && 
+        <Modal
+          country={activeCountry}
+          activeCountry={activeCountry}
+          setActiveCountry={setActiveCountry}
+          rndmCountriesInCont={rndmCountriesInCont}
+          total={inSameContTotal}
+          setFilter={setFilter}
+        />
+      }
       <div>
-        <h2 className={styles.heading}>All countries</h2>
+        <h2 className={styles.heading}>
+          {heading ? heading : "All countries"}
+          </h2>
         <p className={styles.amount}>
           {filteredList.length} / {countryList.length}
         </p>
         <div className={styles.cardContainer}>{countryCards}</div>
+        {loading && <p className={styles.loading}>Loading countries . . .</p>}
+        {error && <p className={styles.error}>Something went wrong :( <br/><br/> Try reloading!</p>}
       </div>
     </>
   )

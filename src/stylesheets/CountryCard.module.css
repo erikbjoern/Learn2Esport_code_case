@@ -10,6 +10,7 @@
   box-shadow: shadow;
   composes: flexbox from "./variables/mixins.css";
   flex-direction: row;
+  margin: 2px;
   padding: 18px;
   transition: background-color .3s, box-shadow 1s, transform 1s;
 }
@@ -21,6 +22,13 @@
   -webkit-transform: translate(2px, -5px);
   -ms-transform: translate(2px, -5px);
   transform: translate(2px, -5px);
+}
+
+.container:focus,
+.modalContainer:focus {
+  outline: none;
+  border: 2px solid #118de099;
+  margin: 0;
 }
 
 .modalContainer:hover {

@@ -1,29 +1,34 @@
-import React, { ChangeEvent } from "react"
-import { DebounceInput } from "react-debounce-input"
-import styles from "../stylesheets/SearchField.module.css"
+import React from "react";
+import { DebounceInput } from "react-debounce-input";
+import styles from "../stylesheets/SearchField.module.css";
 
 interface Props {
-  setFilter: React.Dispatch<React.SetStateAction<string>>
+  filter: string;
+  setFilter: React.Dispatch<React.SetStateAction<string>>;
 }
 
-const SearchField: React.FC<Props> = ({ setFilter }): JSX.Element => {
+const SearchField: React.FC<Props> = ({ filter, setFilter }): JSX.Element => {
   const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFilter(e.target.value.toLowerCase())
-  }
+    setFilter(e.target.value);
+  };
 
   const onFocusHandler = (e: React.FocusEvent<HTMLInputElement>) => {
-    const elementPosition = e.target.getBoundingClientRect().top
-    const offset = window.innerWidth * 0.1 + 70
+    const elementPosition = e.target.getBoundingClientRect().top;
+    const offset = window.innerWidth * 0.1 + 70;
 
     if (elementPosition > 200) {
-      window.scrollTo({ top: offset, behavior: "smooth" })
+      window.scrollTo({ top: offset, behavior: "smooth" });
     }
-  }
+  };
+
+  const clearField = () => {
+    setFilter("");
+  };
 
   return (
     <div className={styles.container}>
       <div className={styles.inputBackground}>
-        <span className={styles.symbolWrapper}>
+        <span className={styles.searchGlass}>
           <i className="fas fa-search"></i>
         </span>
         <DebounceInput
@@ -34,10 +39,16 @@ const SearchField: React.FC<Props> = ({ setFilter }): JSX.Element => {
           className={styles.input}
           placeholder="Search for a country"
           type="text"
+          value={filter}
         />
+        {filter !== "" && (
+          <span className={styles.close} onClick={clearField}>
+            <i className="fas fa-times"></i>
+          </span>
+        )}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default SearchField
+export default SearchField;

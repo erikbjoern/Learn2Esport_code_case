@@ -9,9 +9,10 @@
   padding: 15px 25px;
 }
 
-.symbolWrapper {
+.searchGlass {
   font-size: 11px;
   margin: 3px -3px 3px 20px;
+  opacity: .8;
 }
 
 .inputBackground {
@@ -40,4 +41,14 @@
   color: text-secondary;
   font-size: 11px;
   font-style: italic;
+}
+
+.close {
+  margin-right: 18px;
+  opacity: .7;
+}
+
+.close:hover {
+  cursor: pointer;
+  opacity: .4;
 }

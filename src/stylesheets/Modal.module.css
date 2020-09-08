@@ -5,24 +5,32 @@
 @value main-font from fonts;
 @value header-height, static-header-height from measures;
 
-.overlay {
-  -webkit-animation: fade-in .2s;
-  animation: fade-in .2s;
+.overlay,
+.fadeOutOverlay {
+  -webkit-animation: fade-in 0.2s forwards;
+  animation: fade-in 0.2s forwards;
   background-color: #0b1626;
   cursor: pointer;
   height: 100vh;
   left: 0;
-  opacity: .8;
+  opacity: 0.8;
   position: fixed;
   top: header-height;
   width: 100vw;
   z-index: 2;
 }
 
-.modal {
+.fadeOutOverlay {
+  -webkit-animation: fade-out 0.7s forwards;
+  animation: fade-out 0.7s forwards;
+  margin-top: -4px;
+}
+
+.modal,
+.closingModal {
   align-items: center;
-  -webkit-animation: fade-in-modal .8s ease-out forwards;
-  animation: fade-in-modal .8s ease-out forwards;
+  -webkit-animation: fade-in-modal 0.8s ease-out forwards;
+  animation: fade-in-modal 0.8s ease-out forwards;
   background-color: secondary;
   border-radius: 3px;
   box-shadow: 0px 5px 12px 1px #0e0f1666;
@@ -36,9 +44,15 @@
   padding: 40px 20px 15px;
   position: fixed;
   top: calc(14vh - 40px);
-  transition: max-height .9s;
+  transition: max-height 0.9s;
   width: 400px;
   z-index: 2;
+}
+
+.closingModal {
+  height: 180px;
+  max-height: 180px;
+  transition: max-height 0.4s;
 }
 
 .topContainer {
@@ -75,29 +89,43 @@
 .otherCountriesText {
   align-self: start;
   font-size: 10px;
+  margin-bottom: -2px;
 }
 
-.bottomContainer {
+.bottomContainer,
+.closingBtmCont {
   align-items: stretch;
-  -webkit-animation: fade-in-bottom .6s .3s linear forwards;
-  animation: fade-in-bottom .6s .3s linear forwards;
-  animation-fill-mode: forwards;
+  -webkit-animation: fade-in-bottom 0.6s 0.3s linear forwards;
+  animation: fade-in-bottom 0.6s 0.3s linear forwards;
   composes: flexbox from "./variables/mixins.css";
   flex-direction: column;
   gap: 12px;
   height: 100%;
   max-height: 100%;
   overflow: hidden;
-  transition: max-height .2s;
+  transition: max-height 0.2s;
   width: 100%;
+}
+
+.closingBtmCont {
+  -webkit-animation: fade-out-bottom 0.6s linear forwards;
+  animation: fade-out-bottom 0.6s linear forwards;
+  height: 0;
+  max-height: 0%;
 }
 
 .count {
   align-self: center;
-  animation: fade-in .2s .8s forwards;
+  animation: fade-in 0.2s 0.8s forwards;
   bottom: 5px;
   position: absolute;
   visibility: hidden;
+}
+
+.count:hover {
+  cursor: pointer;
+  color: #1d96e7cd;
+  font-weight: 500;
 }
 
 @-webkit-keyframes fade-in {
@@ -118,6 +146,33 @@
 
   to {
     visibility: visible;
+  }
+}
+
+@-webkit-keyframes fade-out {
+  from {
+    visibility: visible;
+    opacity: 0.8;
+  }
+  90% {
+    opacity: 0.8;
+  }
+  to {
+    visibility: visible;
+    opacity: 0;
+  }
+}
+@keyframes fade-out {
+  from {
+    visibility: visible;
+    opacity: 0.8;
+  }
+  50% {
+    opacity: 0.8;
+  }
+  to {
+    visibility: visible;
+    opacity: 0;
   }
 }
 
@@ -156,6 +211,17 @@
 @keyframes fade-in-bottom {
   from {
     height: 0;
+  }
+}
+
+@-webkit-keyframes fade-out-bottom {
+  from {
+    height: 100%;
+  }
+}
+@keyframes fade-out-bottom {
+  from {
+    height: 100%;
   }
 }
 

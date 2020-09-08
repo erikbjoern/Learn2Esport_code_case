@@ -25,6 +25,13 @@
   gap: 20px;
 }
 
+.loading,
+.error {
+  color: text-secondary;
+  font: 13px main-font;
+  letter-spacing: 1px;
+}
+
 @media only screen and (max-width: 650px) {
   .cardContainer {
     grid-template-columns: minmax(0, 1fr);
