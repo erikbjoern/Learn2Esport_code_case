@@ -53,6 +53,11 @@ E.g. when typing "sw", Sweden will appear before Botswana.
 ## Database
 * All country data, except full name of continents, is fetched from [countries.trevorblades.com](https://github.com/trevorblades/countries#readme)
 
+## Further improvements
+* The flags should be lazy loaded
+* On mobile, it seems they are lazy loaded by default, but opening the modal does not trigger the flag to load
+* The modal needs some small adjustments with regards to responsive styling
+
 ## This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 In the project directory, you can run:
