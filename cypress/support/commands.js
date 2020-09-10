@@ -42,3 +42,11 @@ Cypress.Commands.add("isWithinViewport", { prevSubject: true }, subject => {
 
   return subject
 })
+
+Cypress.Commands.add("topIsNotWithinViewport", { prevSubject: true }, subject => {
+  const bounding = subject[0].getBoundingClientRect().top
+
+  expect(bounding).to.be.lessThan(0)
+
+  return subject
+})

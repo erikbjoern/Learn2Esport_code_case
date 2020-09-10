@@ -26,7 +26,7 @@ const SearchField: React.FC<Props> = ({ filter, setFilter }): JSX.Element => {
   };
 
   return (
-    <div className={styles.container}>
+    <div className={styles.container} data-cy="search-field">
       <div className={styles.inputBackground}>
         <span className={styles.searchGlass}>
           <i className="fas fa-search"></i>
