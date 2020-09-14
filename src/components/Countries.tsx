@@ -49,6 +49,7 @@ const Countries: React.FC<Props> = ({ filter, setFilter }): JSX.Element => {
   const { loading, error, data } = useQuery<Countries>(COUNTRIES)
 
   useEffect(() => {
+
     if (!loading && !error && data) {
       setCountryList(data.countries)
     }

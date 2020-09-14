@@ -1,6 +1,6 @@
 describe("Modal", () => {
   beforeEach(() => {
-    cy.mockGraphQLSlow("allCountries")
+    cy.mockGraphQL("allCountries")
     cy.visit("/")
   })
 

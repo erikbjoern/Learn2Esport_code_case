@@ -1,18 +1,8 @@
 describe("Countries", () => {
   beforeEach(() => {
-    cy.mockGraphQLSlow("allCountries")
+    cy.mockGraphQL("allCountries")
     cy.visit("/")
   })
-
-  it("displays error message if any", () => {
-    cy.mockGraphQL("noData")
-    cy.visit("/")
-    cy.get("[data-cy=error]").should("contain", "Something went wrong :(  Try reloading!").should("be.visible")
-  })
-
-  // it("displays message when loading", () => {
-  //   cy.get("[data-cy=loading]").should("contain", "Loading . . .")
-  // })
 
   it("has heading 'All countries'", () => {
     cy.get("[data-cy=countries-heading]").should("contain", "All countries")
@@ -31,4 +21,14 @@ describe("Countries", () => {
     cy.get("[data-cy=search-field]").find("input").type("sweden")
     cy.get("[data-cy=amount]").should("contain", "1 / 250")
   })
+
+  it("displays error message if any", () => {
+    cy.mockGraphQL("noData")
+    cy.visit("/")
+    cy.get("[data-cy=error]").should("contain", "Something went wrong :(  Try reloading!").should("be.visible")
+  })
+
+  // it("displays message when loading", () => {
+  //   cy.get("[data-cy=loading]").should("contain", "Loading . . .")
+  // })
 })
