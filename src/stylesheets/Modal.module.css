@@ -114,7 +114,7 @@
   max-height: 0%;
 }
 
-.count {
+.remainingAmount {
   align-self: center;
   animation: fade-in 0.2s 0.8s forwards;
   bottom: 5px;
@@ -122,7 +122,7 @@
   visibility: hidden;
 }
 
-.count:hover {
+.remainingAmount:hover {
   cursor: pointer;
   color: #1d96e7cd;
   font-weight: 500;

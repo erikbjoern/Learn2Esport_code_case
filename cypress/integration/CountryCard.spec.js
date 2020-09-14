@@ -15,4 +15,14 @@ describe("CountryCard", () => {
       .should("contain", "Afghanistan")
       .should("contain", "Kabul ● Asia ● Pashto, Uzbek, Turkmen ● AFN")
   })
+
+  it("can be focused using 'tab' key", () => {
+    cy.get("[data-cy=card]").should("have.attr", "tabindex").should("eq", "0")
+  })
+
+  it("when modal is open, only the cards in it can be focused", () => {
+    cy.get("[data-cy=card]").first().click()
+    cy.get("[data-cy=card]").first().should("not.have.attr", "tabindex")
+    cy.get("[data-cy=modal-card").should("have.attr", "tabindex").should("eq", "0")
+  })
 })

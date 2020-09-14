@@ -35,11 +35,9 @@ const Modal: React.FC<Props> = ({
     return () => window.removeEventListener("resize", scrollIfTooSmall)
   }, [])
 
-
   const searchByContinent = () => {
     setClosing(true)
 
-    
     setTimeout(() => {
       window.scrollTo({ top: 100, behavior: "smooth" })
     }, 200)
@@ -64,21 +62,32 @@ const Modal: React.FC<Props> = ({
       <div
         className={closing ? styles.fadeOutOverlay : styles.overlay}
         onClick={() => setActiveCountry(null)}
+        data-cy="overlay"
       />
-      <div className={closing ? styles.closingModal : styles.modal}>
+      <div className={closing ? styles.closingModal : styles.modal} data-cy="modal">
         <div className={styles.topContainer}>
-          <div className={styles.flag}>
+          <div className={styles.flag} data-cy="modal-flag">
             <FlagIcon code={country.code.toLowerCase()} size={"5x"} />
           </div>
           <div className={styles.textContainer}>
-            <h3 className={styles.heading}>{country.name}</h3>
-            <p className={styles.continent}>{continentName}</p>
+            <h3 className={styles.heading} data-cy="modal-name">
+              {country.name}
+            </h3>
+            <p className={styles.continent} data-cy="modal-continent">
+              {continentName}
+            </p>
           </div>
         </div>
         <div className={closing ? styles.closingBtmCont : styles.bottomContainer}>
-          <p className={styles.otherCountriesText}>Other countries in {continentName}</p>
+          <p className={styles.otherCountriesText} data-cy="other-countries">
+            Other countries in {continentName}
+          </p>
           {otherCountries}
-          <p className={styles.count} onClick={searchByContinent}>
+          <p
+            className={styles.remainingAmount}
+            onClick={searchByContinent}
+            data-cy="remaining-amount"
+          >
             {!closing && total > 4 && `+ ${total - 4} more`}
           </p>
         </div>
