@@ -10,7 +10,6 @@ describe("CountryCard", () => {
         cy.get("span")
           .should("have.attr", "class")
           .should("match", /flag-icon/)
-          .should("be.visible")
       })
     cy.get("[data-cy=card]").first()
       .should("contain", "Afghanistan")

@@ -8,14 +8,14 @@ const responseStub = (result) => {
     text() {
       return Promise.resolve(JSON.stringify(result))
     },
-    ok: true
+    ok: true,
   })
 }
 
 Cypress.Commands.add("mockGraphQL", (requestedData) => {
   const data = requestedData === "allCountries" ? allCountries : undefined
 
-  cy.on("window:before:load", win => {
+  cy.on("window:before:load", (win) => {
     win.fetch = (path, { method }) => {
       if (path === "https://countries.trevorblades.com" && method === "POST") {
         console.log("stubbing data from " + path)
@@ -26,7 +26,21 @@ Cypress.Commands.add("mockGraphQL", (requestedData) => {
   })
 })
 
-Cypress.Commands.add("isWithinViewport", { prevSubject: true }, subject => {
+Cypress.Commands.add("mockGraphQLSlow", (requestedData) => {
+  const data = requestedData === "allCountries" ? allCountries : undefined
+
+  cy.on("window:before:load", (win) => {
+    win.fetch = (path, { method }) => {
+      if (path === "https://countries.trevorblades.com" && method === "POST") {
+        console.log("stubbing data from " + path)
+        return responseStub(data)
+      }
+      throw new Error("Unhandled fetch request that needs to be stubbed.")
+    }
+  })
+})
+
+Cypress.Commands.add("isWithinViewport", { prevSubject: true }, (subject) => {
   const windowInnerWidth = Cypress.config("viewportWidth")
   const windowInnerHeight = Cypress.config("viewportHeight")
 
@@ -43,7 +57,7 @@ Cypress.Commands.add("isWithinViewport", { prevSubject: true }, subject => {
   return subject
 })
 
-Cypress.Commands.add("topIsNotWithinViewport", { prevSubject: true }, subject => {
+Cypress.Commands.add("topIsNotWithinViewport", { prevSubject: true }, (subject) => {
   const bounding = subject[0].getBoundingClientRect().top
 
   expect(bounding).to.be.lessThan(0)

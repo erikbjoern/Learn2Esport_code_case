@@ -23,8 +23,8 @@ const Countries: React.FC<Props> = ({ filter, setFilter }): JSX.Element => {
   const [activeCountry, setActiveCountry] = useState<Country | null>(null)
   const [heading, setHeading] = useState("")
   const inSameCont: Country[] = countryList
-  ? countryList.filter((c: Country) => c.continent.code === activeCountry?.continent?.code)
-  : []
+    ? countryList.filter((c: Country) => c.continent.code === activeCountry?.continent?.code)
+    : []
   const rndmCountriesInCont: Country[] = []
   const inSameContTotal: number = inSameCont.length
 
@@ -62,9 +62,15 @@ const Countries: React.FC<Props> = ({ filter, setFilter }): JSX.Element => {
 
   useEffect(() => {
     if (countryList) {
-      if (Object.values(continentNames).map((c: any) => c.toLowerCase()).includes(filter)) {
+      if (
+        Object.values(continentNames)
+          .map((c: any) => c.toLowerCase())
+          .includes(filter)
+      ) {
         const continentName = capitalize(filter)
-        const searchByCont = countryList.filter((c: Country) => c.continent.code === continentCodes[continentName])
+        const searchByCont = countryList.filter(
+          (c: Country) => c.continent.code === continentCodes[continentName]
+        )
         setFilteredList(searchByCont)
         setHeading(continentName)
       } else {
@@ -105,7 +111,7 @@ const Countries: React.FC<Props> = ({ filter, setFilter }): JSX.Element => {
 
   return (
     <>
-      {activeCountry && 
+      {activeCountry && (
         <Modal
           country={activeCountry}
           activeCountry={activeCountry}
@@ -114,17 +120,26 @@ const Countries: React.FC<Props> = ({ filter, setFilter }): JSX.Element => {
           total={inSameContTotal}
           setFilter={setFilter}
         />
-      }
+      )}
       <div>
-        <h2 className={styles.heading}>
+        <h2 className={styles.heading} data-cy="countries-heading">
           {heading ? heading : "All countries"}
-          </h2>
-        <p className={styles.amount}>
+        </h2>
+        <p className={styles.amount} data-cy="amount">
           {filteredList.length} / {countryList.length}
         </p>
         <div className={styles.cardContainer}>{countryCards}</div>
-        {loading && <p className={styles.loading}>Loading countries . . .</p>}
-        {error && <p className={styles.error}>Something went wrong :( <br/><br/> Try reloading!</p>}
+        {loading && (
+          <p data-cy="loading" className={styles.loading}>
+            Loading countries . . .
+          </p>
+        )}
+        {error && (
+          <p data-cy="error" className={styles.error}>
+            Something went wrong :( <br />
+            <br /> Try reloading!
+          </p>
+        )}
       </div>
     </>
   )
