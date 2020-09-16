@@ -61,6 +61,7 @@ const CountryCard: React.FC<Props> = ({
       onClick={onClickHandler}
       tabIndex={fromModal ? 0 : activeCountry ? undefined : 0}
       onKeyDown={onEnterHandler}
+      data-cy={fromModal ? "modal-card" : "card"}
     >
       <div className={styles.flag}>
         <FlagIcon code={country.code.toLowerCase()} size={"3x"} />

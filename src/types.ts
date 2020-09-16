@@ -1,12 +1,13 @@
 export type Country = {
-  capital: string;
+  capital: string | null;
   code: string;
   continent: {
     code: string;
   };
-  currency: string;
+  currency: string | null;
   languages: {
-    name: {
+    name: string; }[] | 
+    { name: {
       name: string[];
     };
   };
