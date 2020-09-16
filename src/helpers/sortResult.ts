@@ -1,6 +1,8 @@
 import { Country } from "../types"
 
 export const findMatchInBeginning = (array: Country[], filter: string) => {
+  filter = filter.toLowerCase()
+
   return array
     .filter(
       (country) =>
@@ -11,6 +13,8 @@ export const findMatchInBeginning = (array: Country[], filter: string) => {
 }
 
 export const findMatchElsewhere = (array: Country[], filter: string) => {
+  filter = filter.toLowerCase()
+  
   return filter.length < 3
     ? []
     : array

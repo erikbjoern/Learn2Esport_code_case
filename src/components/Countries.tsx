@@ -66,7 +66,7 @@ const Countries: React.FC<Props> = ({ filter, setFilter }): JSX.Element => {
       if (
         Object.values(continentNames)
           .map((c: any) => c.toLowerCase())
-          .includes(filter)
+          .includes(filter.toLowerCase())
       ) {
         const continentName = capitalize(filter)
         const searchByCont = countryList.filter(
