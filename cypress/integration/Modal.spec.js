@@ -20,9 +20,9 @@ describe("Modal", () => {
       cy.get("[data-cy=modal]").should("not.exist")
     })
 
-    it("can be closed by hitting 'escape' key", () => {
+    it.only("can be closed by hitting 'escape' key", () => {
       cy.get("[data-cy=modal]").should("be.visible")
-      cy.get("[data-cy=overlay]").trigger("keydown", { keyCode: 27 })
+      cy.get("[data-cy=overlay]").trigger("keydown", { keyCode: 27, force: true })
       cy.get("[data-cy=modal]").should("not.exist")
     })
 
