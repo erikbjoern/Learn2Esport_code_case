@@ -27,8 +27,4 @@ describe("Countries", () => {
     cy.visit("/")
     cy.get("[data-cy=error]").should("contain", "Something went wrong :(  Try reloading!").should("be.visible")
   })
-
-  // it("displays message when loading", () => {
-  //   cy.get("[data-cy=loading]").should("contain", "Loading . . .")
-  // })
 })

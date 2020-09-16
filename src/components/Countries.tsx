@@ -8,6 +8,24 @@ import { continentNames, continentCodes } from "../modules/continents"
 import { Country } from "../types"
 import styles from "../stylesheets/Countries.module.css"
 
+export const GET_COUNTRIES = gql`
+{
+  countries {
+    capital
+    code
+    continent {
+      code
+    }
+    currency
+    languages {
+      name
+    }
+    name
+    native
+  }
+}
+`
+
 interface Countries {
   countries: Country[]
 }
@@ -28,25 +46,7 @@ const Countries: React.FC<Props> = ({ filter, setFilter }): JSX.Element => {
   const rndmCountriesInCont: Country[] = []
   const inSameContTotal: number = inSameCont.length
 
-  const COUNTRIES = gql`
-    {
-      countries {
-        capital
-        code
-        continent {
-          code
-        }
-        currency
-        languages {
-          name
-        }
-        name
-        native
-      }
-    }
-  `
-
-  const { loading, error, data } = useQuery<Countries>(COUNTRIES)
+  const { loading, error, data } = useQuery<Countries>(GET_COUNTRIES)
 
   useEffect(() => {
 
@@ -129,9 +129,9 @@ const Countries: React.FC<Props> = ({ filter, setFilter }): JSX.Element => {
         <p className={styles.amount} data-cy="amount">
           {filteredList.length} / {countryList.length}
         </p>
-        <div className={styles.cardContainer}>{countryCards}</div>
+        <div className={styles.cardContainer} data-testid="country-cards">{countryCards}</div>
         {loading && (
-          <p data-cy="loading" className={styles.loading}>
+          <p data-testid="loading" className={styles.loading}>
             Loading countries . . .
           </p>
         )}
