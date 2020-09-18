@@ -37,6 +37,11 @@ describe("Search functionality", () => {
     cy.get("[data-cy=card]").first().should("contain", "Finland")
   })
 
+  it("does not find by native name unless it starts with the search string", () => {
+    cy.get("@input").type("uomi")
+    cy.get("[data-cy=card]").should("have.length", 0)
+  })
+
   it("filters by continent if the exact name is entered", () => {
     cy.get("@input").type("north america")
     cy.get("[data-cy=card]").should("have.length", 41)
