@@ -16,11 +16,11 @@ describe("Modal", () => {
 
     it("can be closed by clicking outside of it", () => {
       cy.get("[data-cy=modal]").should("be.visible")
-      cy.get("[data-cy=overlay]").click("left")
+      cy.get("[data-cy=overlay]").click({ force: true })
       cy.get("[data-cy=modal]").should("not.exist")
     })
 
-    it.only("can be closed by hitting 'escape' key", () => {
+    it("can be closed by hitting 'escape' key", () => {
       cy.get("[data-cy=modal]").should("be.visible")
       cy.get("[data-cy=overlay]").trigger("keydown", { keyCode: 27, force: true })
       cy.get("[data-cy=modal]").should("not.exist")
@@ -52,4 +52,20 @@ describe("Modal", () => {
       cy.get("[data-cy=amount]").should("contain", "52 / 250")
     })
   })
+
+  describe("Opening the modal when scrolled down, on low viewport", () => {
+    beforeEach(() => {
+      cy.viewport(1000, 600)
+      cy.get("[data-cy=card]").contains("Chile").scrollIntoView()
+    })
+
+    it("triggers scroll to top, where the modal appears", () => {
+      cy.get("[data-cy=search-field]").topIsNotWithinViewport()
+      cy.get("[data-cy=card]").contains("Chile").click()
+      cy.wait(500)
+      cy.get("[data-cy=modal]").within(() => {
+        cy.get("[data-cy=modal-flag]").isWithinViewport()
+      })
+    })
+  })    
 })
