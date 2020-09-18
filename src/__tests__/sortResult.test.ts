@@ -9,7 +9,7 @@ const swaziland   = countries[212]
 const sweden      = countries[196]
 const switzerland = countries[42]
 
-it("Finds countries which names start with the string", () => {
+it("Finds countries which names start with the search string", () => {
   expect(findMatchInBeginning(countries, "Sw")).toStrictEqual([
     swaziland, sweden, switzerland
   ])
@@ -24,5 +24,20 @@ it("Is case insensitive", () => {
 it("Finds countries that contains the string, if the string is at least 3 characters", () => {
   expect(findMatchElsewhere(countries, "Swa")).toStrictEqual([
     botswana
+  ])
+})
+
+it("Finds countries based on native name", () => {
+  expect(findMatchInBeginning(countries, "Sver")).toStrictEqual([
+    sweden
+  ])
+})
+
+it("Does not find by native name unless it starts with the search string", () => {
+  expect(findMatchInBeginning(countries, "verige")).not.toStrictEqual([
+    sweden
+  ])
+  expect(findMatchElsewhere(countries, "verige")).not.toStrictEqual([
+    sweden
   ])
 })
