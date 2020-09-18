@@ -3,16 +3,16 @@
 Deployed app: [https://l2e-codecase.netlify.app/](https://l2e-codecase.netlify.app/)
 
 ## Features
-The main functionality of this small application is to be a search enginge for countries. I did however not implement it as a search normally works - that a new request is made for each search - instead I chose to fetch all countries at once when the page is opened, then store all of them and perform a local search - filter by whatever the user searches for. This is not a scalable solution, but since there are only 250 countries in the world, loading all of them is done quickly with a descent connection. This method makes the searching itself fast, which makes for an effortless user experience.
+The main functionality of this small application is to be a search engine for countries. I did however not implement it as a search engine normally works - that a new request is made for each search - instead I chose to fetch all countries at once when the page is opened, then store all of them and perform a local search - filter by whatever the user searches for. This is not a scalable solution, but since there are only 250 countries in the world, loading all of them is done quickly with a descent connection. This method makes the searching itself fast, which makes for an effortless user experience.
 
 ### Country cards
 * Each country is displayed in a card containing its flag, name, capital, continent, languages and currencies
 
 ### Search functionality
-* The search functionality is implemented as a frontend filter applied to the response
+* The search functionality is implemented as a frontend filter applied to the response from the database
 * The result is sorted alphabetically by country name
 * Countries which name starts with the search string is prioritised over others, and the search string has to be at least three characters long before it matches countries which does not start with it.
-E.g. when typing "ger", Germany will appear before Algeria.
+E.g. when typing "ger", Germany will appear before Algeria, and just typing "ge" will not make Algeria show up at all
 * The filtering is case insensitive
 * The input field is debounced with a short timeout for a slightly less crazy, but still responsive experience
 * The input field can be cleared by clicking a small "X" icon
@@ -42,6 +42,7 @@ E.g. when typing "ger", Germany will appear before Algeria.
 * The application queries the database using [apollo-client](https://www.npmjs.com/package/apollo-client) and 
 * [graphql](https://www.npmjs.com/package/graphql)
 * [TypeScript](https://www.typescriptlang.org/download) and type packages
+* [Cypress](https://cypress.io) is used for integration tests
 
 ## Styling
 * This project uses CSS modules, which are supported out of the box by create-react-app
