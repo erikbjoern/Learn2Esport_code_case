@@ -27,14 +27,14 @@ const CountryCard: React.FC<Props> = ({
   const keyWordsArr = [capital, continent, languages, currency]
 
   const keyWords = keyWordsArr
-    .filter((w) => w != null && w !== "")
-    .map((w, i) => {
+    .filter((word) => word)
+    .map((word, i) => {
       return i === 0 ? (
-        <span key={i}>{w}</span>
+        <span key={i}>{word}</span>
       ) : (
         <span key={i}>
           <span className={styles.bullet}> ● </span>
-          <span>{w}</span>
+          <span>{word}</span>
         </span>
       )
     })
