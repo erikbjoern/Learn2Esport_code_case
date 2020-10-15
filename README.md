@@ -3,7 +3,7 @@
 Deployed app: [https://l2e-codecase.netlify.app/](https://l2e-codecase.netlify.app/)
 
 ## Features
-The main functionality of this small application is to be a search engine for countries. I did however not implement it as a search engine normally works - that a new request is made for each search - instead I chose to fetch all countries at once when the page is opened, then store all of them and perform a local search - filter by whatever the user searches for. This is not a scalable solution, but since there are only 250 countries in the world, loading all of them is done quickly with a descent connection. This method makes the searching itself fast, which makes for an effortless user experience.
+The main functionality of this small application is to be a search engine for countries. I did however not implement it as a search engine normally works - that a new request is made for each search - instead I chose to fetch all countries at once when the page is opened, then store all of them and perform a local search - i.e. filter the stored countries by whatever the user searches for. This is not a scalable solution, but since there are only 250 countries in the world, loading all of them is done quickly with a descent connection, and the amount of countries in the world will probably not increase drastically any time soon. This method makes the searching itself fast, which makes for an effortless user experience.
 
 ### Country cards
 * Each country is displayed in a card containing its flag, name, capital, continent, languages and currencies
