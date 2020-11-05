@@ -23,8 +23,7 @@ export const GET_COUNTRIES = gql`
     name
     native
   }
-}
-`
+}`
 
 interface Countries {
   countries: Country[]
@@ -40,26 +39,13 @@ const Countries: React.FC<Props> = ({ filter, setFilter }): JSX.Element => {
   const [filteredList, setFilteredList] = useState<Country[]>([])
   const [activeCountry, setActiveCountry] = useState<Country | null>(null)
   const [heading, setHeading] = useState("")
-  const inSameCont: Country[] = countryList
-    ? countryList.filter((c: Country) => c.continent.code === activeCountry?.continent?.code)
-    : []
-  const rndmCountriesInCont: Country[] = []
-  const inSameContTotal: number = inSameCont.length
-
   const { loading, error, data } = useQuery<Countries>(GET_COUNTRIES)
 
   useEffect(() => {
-
     if (!loading && !error && data) {
       setCountryList(data.countries)
     }
   }, [loading, error, data])
-
-  useEffect(() => {
-    document.addEventListener("keydown", escape)
-
-    return () => document.removeEventListener("keydown", escape)
-  }, [])
 
   useEffect(() => {
     if (countryList) {
@@ -85,21 +71,6 @@ const Countries: React.FC<Props> = ({ filter, setFilter }): JSX.Element => {
     }
   }, [filter, countryList])
 
-  const escape = (e: KeyboardEvent) => {
-    if (e.keyCode === 27) {
-      setActiveCountry(null)
-    }
-  }
-
-  for (let i = 0; i < 3; i++) {
-    const randomCountry = inSameCont[Math.floor(Math.random() * inSameCont.length)]
-    if (!rndmCountriesInCont.find((c) => c === randomCountry) && randomCountry !== activeCountry) {
-      rndmCountriesInCont.push(randomCountry)
-    } else {
-      i -= 1
-    }
-  }
-
   const countryCards: React.ReactNode[] = filteredList.map((country: Country) => (
     <CountryCard
       key={country.code}
@@ -114,11 +85,9 @@ const Countries: React.FC<Props> = ({ filter, setFilter }): JSX.Element => {
     <>
       {activeCountry && (
         <Modal
-          country={activeCountry}
           activeCountry={activeCountry}
           setActiveCountry={setActiveCountry}
-          rndmCountriesInCont={rndmCountriesInCont}
-          total={inSameContTotal}
+          countryList={countryList}
           setFilter={setFilter}
         />
       )}
