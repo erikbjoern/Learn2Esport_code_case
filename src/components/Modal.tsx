@@ -9,14 +9,14 @@ interface Props {
   activeCountry: Country
   setActiveCountry: React.Dispatch<React.SetStateAction<Country | null>>
   countryList: Country[]
-  setFilter: React.Dispatch<React.SetStateAction<string>>
+  setSearchString: React.Dispatch<React.SetStateAction<string>>
 }
 
 const Modal: React.FC<Props> = ({
   activeCountry,
   setActiveCountry,
   countryList,
-  setFilter,
+  setSearchString,
 }): JSX.Element => {
   const [closing, setClosing] = useState(false)
   const continentName = continentNames[activeCountry.continent.code]
@@ -49,7 +49,7 @@ const Modal: React.FC<Props> = ({
     }, 200)
     setTimeout(() => {
       setActiveCountry(null)
-      setFilter(continentName)
+      setSearchString(continentName)
     }, 700)
   }
 

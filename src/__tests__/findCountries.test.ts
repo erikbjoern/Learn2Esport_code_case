@@ -1,4 +1,4 @@
-import { findMatchInBeginning, findMatchElsewhere } from "../helpers/sortResult"
+import { findCountries } from "../helpers/findCountries"
 import * as allCountries from "../../cypress/fixtures/allCountries.json"
 import { Country } from "../types"
 
@@ -10,34 +10,31 @@ const sweden      = countries.find(country => country.name === "Sweden")
 const switzerland = countries.find(country => country.name === "Switzerland")
 
 it("Finds countries which names start with the search string", () => {
-  expect(findMatchInBeginning(countries, "Sw")).toStrictEqual([
+  expect(findCountries(countries, "Sw")).toStrictEqual([
     swaziland, sweden, switzerland
   ])
 })
 
 it("Is case insensitive", () => {
-  expect(findMatchInBeginning(countries, "sw")).toStrictEqual([
+  expect(findCountries(countries, "sw")).toStrictEqual([
     swaziland, sweden, switzerland
   ])
 })
 
 it("Finds countries that contains the string, if the string is at least 3 characters", () => {
-  expect(findMatchElsewhere(countries, "Swa")).toStrictEqual([
-    botswana
+  expect(findCountries(countries, "Swa")).toStrictEqual([
+    swaziland, botswana
   ])
 })
 
 it("Finds countries based on native name", () => {
-  expect(findMatchInBeginning(countries, "Sver")).toStrictEqual([
+  expect(findCountries(countries, "Sver")).toStrictEqual([
     sweden
   ])
 })
 
 it("Does not find by native name unless it starts with the search string", () => {
-  expect(findMatchInBeginning(countries, "verige")).not.toStrictEqual([
-    sweden
-  ])
-  expect(findMatchElsewhere(countries, "verige")).not.toStrictEqual([
+  expect(findCountries(countries, "verige")).not.toStrictEqual([
     sweden
   ])
 })

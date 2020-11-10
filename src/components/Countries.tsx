@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react"
 import CountryCard from "./CountryCard"
 import Modal from "./Modal"
 import { gql, useQuery } from "@apollo/client"
-import { findMatchInBeginning, findMatchElsewhere } from "../helpers/sortResult"
+import { findCountries } from "../helpers/findCountries"
 import { capitalize } from "../helpers/capitalize"
 import { continentNames, continentCodes } from "../modules/continents"
 import { Country } from "../types"
@@ -30,11 +30,11 @@ interface Countries {
 }
 
 interface Props {
-  filter: string
-  setFilter: React.Dispatch<React.SetStateAction<string>>
+  searchString: string
+  setSearchString: React.Dispatch<React.SetStateAction<string>>
 }
 
-const Countries: React.FC<Props> = ({ filter, setFilter }): JSX.Element => {
+const Countries: React.FC<Props> = ({ searchString = "", setSearchString }): JSX.Element => {
   const [countryList, setCountryList] = useState<Country[]>([])
   const [filteredList, setFilteredList] = useState<Country[]>([])
   const [activeCountry, setActiveCountry] = useState<Country | null>(null)
@@ -52,24 +52,21 @@ const Countries: React.FC<Props> = ({ filter, setFilter }): JSX.Element => {
       if (
         Object.values(continentNames)
           .map((c: any) => c.toLowerCase())
-          .includes(filter.toLowerCase())
+          .includes(searchString.toLowerCase())
       ) {
-        const continentName = capitalize(filter)
+        const continentName = capitalize(searchString)
         const searchByCont = countryList.filter(
           (c: Country) => c.continent.code === continentCodes[continentName]
         )
         setFilteredList(searchByCont)
         setHeading(continentName)
       } else {
-        const filteredAndSorted: Country[] = [
-          ...findMatchInBeginning(countryList, filter),
-          ...findMatchElsewhere(countryList, filter),
-        ]
-        setFilteredList(filteredAndSorted)
+        const matchingCountries = findCountries(countryList, searchString)
+        setFilteredList(matchingCountries)
         setHeading("")
       }
     }
-  }, [filter, countryList])
+  }, [searchString, countryList])
 
   const countryCards: React.ReactNode[] = filteredList.map((country: Country) => (
     <CountryCard
@@ -88,7 +85,7 @@ const Countries: React.FC<Props> = ({ filter, setFilter }): JSX.Element => {
           activeCountry={activeCountry}
           setActiveCountry={setActiveCountry}
           countryList={countryList}
-          setFilter={setFilter}
+          setSearchString={setSearchString}
         />
       )}
       <div>
