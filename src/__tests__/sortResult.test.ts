@@ -4,10 +4,10 @@ import { Country } from "../types"
 
 const countries: Country[] = allCountries.data.countries
 
-const botswana    = countries[34]
-const swaziland   = countries[212]
-const sweden      = countries[196]
-const switzerland = countries[42]
+const botswana    = countries.find(country => country.name === "Botswana")
+const swaziland   = countries.find(country => country.name === "Swaziland")
+const sweden      = countries.find(country => country.name === "Sweden")
+const switzerland = countries.find(country => country.name === "Switzerland")
 
 it("Finds countries which names start with the search string", () => {
   expect(findMatchInBeginning(countries, "Sw")).toStrictEqual([
