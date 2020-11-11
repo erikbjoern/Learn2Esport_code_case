@@ -16,7 +16,7 @@ const mocks = [
 it("Displays message when loading countries", () => {
   const { getByTestId } = render(
     <MockedProvider mocks={mocks} addTypename={false}>
-      <Countries filter=""/>
+      <Countries />
     </MockedProvider>
   )
 

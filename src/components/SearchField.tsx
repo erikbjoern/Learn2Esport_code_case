@@ -3,13 +3,13 @@ import { DebounceInput } from "react-debounce-input";
 import styles from "../stylesheets/SearchField.module.css";
 
 interface Props {
-  filter: string;
-  setFilter: React.Dispatch<React.SetStateAction<string>>;
+  searchString: string;
+  setSearchString: React.Dispatch<React.SetStateAction<string>>;
 }
 
-const SearchField: React.FC<Props> = ({ filter, setFilter }): JSX.Element => {
+const SearchField: React.FC<Props> = ({ searchString, setSearchString }): JSX.Element => {
   const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFilter(e.target.value);
+    setSearchString(e.target.value);
   };
 
   const onFocusHandler = (e: React.FocusEvent<HTMLInputElement>) => {
@@ -22,7 +22,7 @@ const SearchField: React.FC<Props> = ({ filter, setFilter }): JSX.Element => {
   };
 
   const clearField = () => {
-    setFilter("");
+    setSearchString("");
   };
 
   return (
@@ -39,9 +39,9 @@ const SearchField: React.FC<Props> = ({ filter, setFilter }): JSX.Element => {
           className={styles.input}
           placeholder="Search for a country"
           type="text"
-          value={filter}
+          value={searchString}
         />
-        {filter !== "" && (
+        {searchString !== "" && (
           <span className={styles.close} onClick={clearField}>
             <i className="fas fa-times"></i>
           </span>
