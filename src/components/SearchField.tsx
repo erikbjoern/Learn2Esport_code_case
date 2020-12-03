@@ -1,6 +1,8 @@
 import React from "react";
 import { DebounceInput } from "react-debounce-input";
 import styles from "../stylesheets/SearchField.module.css";
+import { ReactComponent as SearchIcon } from "../assets/icons/search-solid.svg"
+import { ReactComponent as CloseIcon } from "../assets/icons/times-solid.svg"
 
 interface Props {
   searchString: string;
@@ -28,8 +30,8 @@ const SearchField: React.FC<Props> = ({ searchString, setSearchString }): JSX.El
   return (
     <div className={styles.container} data-cy="search-field">
       <div className={styles.inputBackground}>
-        <span className={styles.searchGlass}>
-          <i className="fas fa-search"></i>
+        <span data-cy="search" className={styles.searchGlass}>
+          <SearchIcon />
         </span>
         <DebounceInput
           minLength={1}
@@ -42,8 +44,8 @@ const SearchField: React.FC<Props> = ({ searchString, setSearchString }): JSX.El
           value={searchString}
         />
         {searchString !== "" && (
-          <span className={styles.close} onClick={clearField}>
-            <i className="fas fa-times"></i>
+          <span data-cy="close" className={styles.close} onClick={clearField}>
+            <CloseIcon />
           </span>
         )}
       </div>

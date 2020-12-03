@@ -16,7 +16,7 @@ body {
 }
 
 .background {
-  background-image: linear-gradient(#242b3db3, #242b3d), url("../images/ashe_background.png");
+  background-image: linear-gradient(#242b3db3, #242b3d), url("../assets/images/ashe_background.png");
   background-repeat: no-repeat;
   background-size: 100%;
   height: 100vh;

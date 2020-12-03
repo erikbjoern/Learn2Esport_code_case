@@ -62,7 +62,7 @@ describe("Modal", () => {
     it("triggers scroll to top, where the modal appears", () => {
       cy.get("[data-cy=search-field]").topIsNotWithinViewport()
       cy.get("[data-cy=card]").contains("Chile").click()
-      cy.wait(500)
+      cy.wait(1000)
       cy.get("[data-cy=modal]").within(() => {
         cy.get("[data-cy=modal-flag]").isWithinViewport()
       })

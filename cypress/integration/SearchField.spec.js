@@ -10,13 +10,13 @@ describe("SearchField", () => {
   })
 
   it("renders with a search glass icon", () => {
-    cy.get("[data-cy=search-field]").find("i.fas.fa-search").should("be.visible")
+    cy.get("[data-cy=search]").should("be.visible")
   })
 
   it("displays a cross when typed into, which clears field when clicked", () => {
-    cy.get("[data-cy=search-field]").find("i.fas.fas-times").should("not.be.visible")
+    cy.get("[data-cy=close]").should("not.be.visible")
     cy.get("@input").type("Anything")
-    cy.get("[data-cy=search-field]").find("i.fas.fa-times").should("be.visible").click()
+    cy.get("[data-cy=close]").should("be.visible").click()
     cy.get("@input").should("have.value", "")
   })
 
