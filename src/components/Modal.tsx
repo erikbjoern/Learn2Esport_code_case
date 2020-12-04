@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import React, { useCallback, useEffect, useState } from "react"
 import CountryCard from "./CountryCard"
 import FlagIcon from "../modules/flagIcon"
 import { continentNames } from "../modules/continents"
@@ -25,11 +25,14 @@ const Modal: React.FC<Props> = ({
     window.innerHeight < 700 && window.scrollTo({ top: 100, behavior: "smooth" })
   }
 
-  const closeOnEscape = (e: KeyboardEvent) => {
-    if (e.keyCode === 27) {
-      setActiveCountry(null)
-    }
-  }
+  const closeOnEscape = useCallback(
+    (e: KeyboardEvent) => {
+      if (e.keyCode === 27) {
+        setActiveCountry(null)
+      }
+    },
+    [setActiveCountry]
+  )
 
   useEffect(() => {
     window.addEventListener("resize", scrollIfTooSmall)
@@ -39,7 +42,7 @@ const Modal: React.FC<Props> = ({
       window.removeEventListener("resize", scrollIfTooSmall)
       document.removeEventListener("keydown", closeOnEscape)
     }
-  }, [])
+  }, [closeOnEscape])
 
   const searchByContinent = () => {
     setClosing(true)
@@ -53,7 +56,9 @@ const Modal: React.FC<Props> = ({
     }, 700)
   }
 
-  const inSameContinent = countryList.filter((c: Country) => c.continent.code === activeCountry.continent.code)
+  const inSameContinent = countryList.filter(
+    (c: Country) => c.continent.code === activeCountry.continent.code
+  )
   const randomCountriesInContinent: Set<Country> = new Set()
   const inSameContinentTotal: number = inSameContinent.length
 
