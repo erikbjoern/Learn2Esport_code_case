@@ -6,7 +6,7 @@ import Countries from "./components/Countries"
 import styles from "./stylesheets/App.module.css"
 
 const App: React.FC = (): JSX.Element => {
-  const [filter, setFilter] = useState("")
+  const [searchString, setSearchString] = useState("")
 
   return (
     <div className={styles.mainContainer}>
@@ -14,8 +14,8 @@ const App: React.FC = (): JSX.Element => {
       <div className={styles.background} />
       <div className={styles.container}>
         <Description />
-        <SearchField filter={filter} setFilter={setFilter} />
-        <Countries filter={filter} setFilter={setFilter} />
+        <SearchField searchString={searchString} setSearchString={setSearchString} />
+        <Countries searchString={searchString} setSearchString={setSearchString} />
       </div>
     </div>
   )

@@ -11,8 +11,10 @@
 
 .searchGlass {
   font-size: 11px;
+  height: 12px;
   margin: 3px -3px 3px 20px;
   opacity: .8;
+  width: 12px;
 }
 
 .inputBackground {
@@ -44,8 +46,12 @@
 }
 
 .close {
+  bottom: 2px;
+  height: 12px;
   margin-right: 18px;
   opacity: .7;
+  position: relative;
+  width: 12px;
 }
 
 .close:hover {

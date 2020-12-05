@@ -1,15 +1,17 @@
 import React from "react";
 import { DebounceInput } from "react-debounce-input";
 import styles from "../stylesheets/SearchField.module.css";
+import { ReactComponent as SearchIcon } from "../assets/icons/search-solid.svg"
+import { ReactComponent as CloseIcon } from "../assets/icons/times-solid.svg"
 
 interface Props {
-  filter: string;
-  setFilter: React.Dispatch<React.SetStateAction<string>>;
+  searchString: string;
+  setSearchString: React.Dispatch<React.SetStateAction<string>>;
 }
 
-const SearchField: React.FC<Props> = ({ filter, setFilter }): JSX.Element => {
+const SearchField: React.FC<Props> = ({ searchString, setSearchString }): JSX.Element => {
   const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFilter(e.target.value);
+    setSearchString(e.target.value);
   };
 
   const onFocusHandler = (e: React.FocusEvent<HTMLInputElement>) => {
@@ -22,14 +24,14 @@ const SearchField: React.FC<Props> = ({ filter, setFilter }): JSX.Element => {
   };
 
   const clearField = () => {
-    setFilter("");
+    setSearchString("");
   };
 
   return (
     <div className={styles.container} data-cy="search-field">
       <div className={styles.inputBackground}>
-        <span className={styles.searchGlass}>
-          <i className="fas fa-search"></i>
+        <span data-cy="search" className={styles.searchGlass}>
+          <SearchIcon />
         </span>
         <DebounceInput
           minLength={1}
@@ -39,11 +41,11 @@ const SearchField: React.FC<Props> = ({ filter, setFilter }): JSX.Element => {
           className={styles.input}
           placeholder="Search for a country"
           type="text"
-          value={filter}
+          value={searchString}
         />
-        {filter !== "" && (
-          <span className={styles.close} onClick={clearField}>
-            <i className="fas fa-times"></i>
+        {searchString !== "" && (
+          <span data-cy="close" className={styles.close} onClick={clearField}>
+            <CloseIcon />
           </span>
         )}
       </div>
